@@ -40,9 +40,23 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async session({ session, token }) {
+      if (session.user && session.user.email) {
+        // Fetch the user from the database to get their ID
+        const dbUser = await db.user.findUnique({
+          where: {
+            email: session.user.email,
+          },
+        });
+        
+        if (dbUser) {
+          // Add the user ID to the session
+          session.user.id = dbUser.id;
+        }
+      }
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
+      // Keep the user ID in the token if available
       if (user) {
         token.id = user.id;
       }

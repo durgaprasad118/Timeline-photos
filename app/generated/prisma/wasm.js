@@ -130,6 +130,27 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CollectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  coverImage: 'coverImage',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.MemoryScalarFieldEnum = {
+  id: 'id',
+  image: 'image',
+  date: 'date',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  collectionId: 'collectionId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -148,9 +169,26 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   image: 'image'
 };
 
+exports.Prisma.CollectionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  coverImage: 'coverImage',
+  userId: 'userId'
+};
+
+exports.Prisma.MemoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  image: 'image',
+  description: 'description',
+  collectionId: 'collectionId'
+};
+
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Collection: 'Collection',
+  Memory: 'Memory'
 };
 
 /**

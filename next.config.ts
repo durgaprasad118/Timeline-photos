@@ -7,7 +7,19 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**.googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
+  },
+  webpack: (config) => {
+    // This is to fix cloudinary using fs which is not available in the browser
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+    };
+    return config;
   },
 };
 
