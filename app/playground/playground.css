@@ -1,0 +1,176 @@
+/* Playground styles */
+.shiki-container {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+.shiki-container pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: none;
+}
+
+.shiki-container code {
+  font-family: inherit;
+  white-space: pre;
+  background: transparent !important;
+}
+
+.shiki {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Markdown specific styling */
+.shiki-container h1 {
+  font-size: 1.8em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: inherit;
+}
+
+.shiki-container h2 {
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: inherit;
+}
+
+.shiki-container ul {
+  margin-left: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.shiki-container li {
+  list-style-type: disc;
+}
+
+.shiki-container blockquote {
+  border-left: 3px solid #aaa;
+  padding-left: 1em;
+  margin-left: 0;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.shiki-container a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.shiki-container a:hover {
+  text-decoration: underline;
+}
+
+.shiki-container p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Fix for code blocks in markdown */
+.shiki-container .language-javascript,
+.shiki-container .language-typescript,
+.shiki-container .language-python,
+.shiki-container .language-css,
+.shiki-container .language-html,
+.shiki-container .language-json {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  margin: 0.5em 0;
+  border-radius: 0.3em;
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Dark mode adjustments */
+.dark .shiki-container .language-javascript,
+.dark .shiki-container .language-typescript,
+.dark .shiki-container .language-python,
+.dark .shiki-container .language-css,
+.dark .shiki-container .language-html,
+.dark .shiki-container .language-json {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Ensure markdown styling works properly */
+.shiki-container strong {
+  font-weight: bold;
+}
+
+.shiki-container em {
+  font-style: italic;
+}
+
+/* Specific styles for markdown-content */
+.markdown-content {
+  line-height: 1.6;
+}
+
+.markdown-content pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+}
+
+.markdown-content code {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+.markdown-content .shiki {
+  background: transparent !important;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content h1 { font-size: 1.8em; }
+.markdown-content h2 { font-size: 1.5em; }
+.markdown-content h3 { font-size: 1.3em; }
+
+.markdown-content ul, 
+.markdown-content ol {
+  margin-left: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content ul li {
+  list-style-type: disc;
+}
+
+.markdown-content ol li {
+  list-style-type: decimal;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid #aaa;
+  padding-left: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+}
+
+.markdown-content a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
+
+.markdown-content p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+} 

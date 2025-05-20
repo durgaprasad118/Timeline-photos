@@ -1,2 +1,50 @@
 @import "tailwindcss";
 
+/* Shiki Playground Styles */
+.shiki-container {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+.shiki-container pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: none;
+}
+
+.shiki-container code {
+  font-family: inherit;
+  white-space: pre;
+  background: transparent !important;
+}
+
+.shiki {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Fix for code blocks in markdown */
+.shiki-container .language-javascript,
+.shiki-container .language-typescript,
+.shiki-container .language-python,
+.shiki-container .language-css,
+.shiki-container .language-html,
+.shiki-container .language-json {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  margin: 0.5em 0;
+  border-radius: 0.3em;
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Dark mode adjustments */
+.dark .shiki-container .language-javascript,
+.dark .shiki-container .language-typescript,
+.dark .shiki-container .language-python,
+.dark .shiki-container .language-css,
+.dark .shiki-container .language-html,
+.dark .shiki-container .language-json {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
