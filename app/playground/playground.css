@@ -1,6 +1,9 @@
 /* Playground styles */
 .shiki-container {
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  color: inherit;
+  position: relative;
+  z-index: 0;
 }
 
 .shiki-container pre {
@@ -19,55 +22,167 @@
 .shiki {
   background: transparent !important;
   padding: 0 !important;
+  width: 100%;
+  height: 100%;
 }
 
-/* Markdown specific styling */
-.shiki-container h1 {
-  font-size: 1.8em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-  color: inherit;
+/* Make sure code container fills the space */
+.shiki-container > div,
+.shiki-container > div > pre {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.shiki-container h2 {
-  font-size: 1.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-  color: inherit;
+/* Ensure textarea doesn't affect scrolling but is still editable */
+textarea {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  color: transparent !important;
+  padding: 1rem !important;
+  tab-size: 2;
+  caret-shape: block;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
 }
 
-.shiki-container ul {
-  margin-left: 1.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+textarea::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
-.shiki-container li {
-  list-style-type: disc;
+/* Ensure the textarea and highlighted code are properly aligned */
+.relative {
+  position: relative;
 }
 
-.shiki-container blockquote {
-  border-left: 3px solid #aaa;
-  padding-left: 1em;
-  margin-left: 0;
-  color: inherit;
-  opacity: 0.8;
+/* Critical fix for text alignment */
+.relative textarea,
+.relative .shiki-container {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+  tab-size: 2 !important;
+  padding: 1rem !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
 }
 
-.shiki-container a {
-  color: #0366d6;
-  text-decoration: none;
+/* Special handling for markdown in Shiki */
+pre.shiki code.language-md,
+pre.shiki code.language-markdown {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
 }
 
-.shiki-container a:hover {
-  text-decoration: underline;
+/* Fix for the height */
+.h-96 {
+  height: 24rem;
 }
 
-.shiki-container p {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+/* Fix for the textarea to always be on top for editing */
+.relative textarea {
+  background: transparent !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 20 !important;
+  border: none !important;
+  overflow: auto !important;
+  resize: none !important;
+  white-space: pre !important;
+}
+
+/* Fix for the caret color in different themes */
+.vitesse-dark textarea, .nord textarea, .github-dark textarea, 
+.min-dark textarea, .rose-pine textarea, .rose-pine-moon textarea, 
+.slack-dark textarea, .slack-ochin textarea, .solarized-dark textarea {
+  caret-color: white !important;
+}
+
+.vitesse-light textarea, .github-light textarea, 
+.min-light textarea, .solarized-light textarea {
+  caret-color: black !important;
+}
+
+/* Theme-specific backgrounds for code blocks */
+.shiki.vitesse-dark {
+  background-color: #121212 !important;
+  color: #dbd7ca !important;
+}
+
+.shiki.vitesse-light {
+  background-color: #ffffff !important;
+  color: #393a34 !important;
+}
+
+.shiki.slack-ochin {
+  background-color: #1b2125 !important;
+  color: #e6e6e6 !important;
+}
+
+.shiki.nord {
+  background-color: #2e3440 !important;
+  color: #d8dee9 !important;
+}
+
+.shiki.github-dark {
+  background-color: #0d1117 !important;
+  color: #c9d1d9 !important;
+}
+
+.shiki.github-light {
+  background-color: #ffffff !important;
+  color: #24292e !important;
+}
+
+.shiki.min-dark {
+  background-color: #1f1f1f !important;
+  color: #d4d4d4 !important;
+}
+
+.shiki.min-light {
+  background-color: #ffffff !important;
+  color: #2e2e2e !important;
+}
+
+.shiki.rose-pine {
+  background-color: #191724 !important;
+  color: #e0def4 !important;
+}
+
+.shiki.rose-pine-moon {
+  background-color: #232136 !important;
+  color: #e0def4 !important;
+}
+
+.shiki.slack-dark {
+  background-color: #1a1d21 !important;
+  color: #d1d2d3 !important;
+}
+
+.shiki.solarized-dark {
+  background-color: #002b36 !important;
+  color: #93a1a1 !important;
+}
+
+.shiki.solarized-light {
+  background-color: #fdf6e3 !important;
+  color: #586e75 !important;
+}
+
+/* Code blocks */
+.code-block {
+  margin: 1em 0;
+  border-radius: 0.3em;
+  overflow: hidden;
+}
+
+.code-block pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
 }
 
 /* Fix for code blocks in markdown */
@@ -76,7 +191,8 @@
 .shiki-container .language-python,
 .shiki-container .language-css,
 .shiki-container .language-html,
-.shiki-container .language-json {
+.shiki-container .language-json,
+.shiki-container .language-md {
   display: block;
   overflow-x: auto;
   padding: 1em;
@@ -85,14 +201,211 @@
   background: rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Dark mode adjustments */
-.dark .shiki-container .language-javascript,
-.dark .shiki-container .language-typescript,
-.dark .shiki-container .language-python,
-.dark .shiki-container .language-css,
-.dark .shiki-container .language-html,
-.dark .shiki-container .language-json {
-  background: rgba(255, 255, 255, 0.05) !important;
+/* Set background for the container */
+.relative.bg-white.dark\:bg-neutral-900 {
+  background-color: transparent !important;
+}
+
+/* Shiki CSS variables for themes */
+:root {
+  --shiki-color-text: inherit;
+  --shiki-token-constant: #0550ae;
+  --shiki-token-string: #8250df;
+  --shiki-token-comment: #6e7781;
+  --shiki-token-keyword: #cf222e;
+  --shiki-token-parameter: #24292f;
+  --shiki-token-function: #8250df;
+  --shiki-token-string-expression: #0a3069;
+  --shiki-token-punctuation: #24292f;
+  --shiki-token-link: #0a3069;
+}
+
+.dark {
+  --shiki-color-text: inherit;
+  --shiki-token-constant: #79c0ff;
+  --shiki-token-string: #a5d6ff;
+  --shiki-token-comment: #8b949e;
+  --shiki-token-keyword: #ff7b72;
+  --shiki-token-parameter: #c9d1d9;
+  --shiki-token-function: #d2a8ff;
+  --shiki-token-string-expression: #a5d6ff;
+  --shiki-token-punctuation: #c9d1d9;
+  --shiki-token-link: #a5d6ff;
+}
+
+/* Markdown theme-specific backgrounds */
+.markdown-content.theme-dark {
+  color: #e1e4e8;
+  background-color: #1e1e1e;
+}
+
+.markdown-content.theme-light {
+  color: #24292e;
+  background-color: #ffffff;
+}
+
+/* Specific theme backgrounds */
+.markdown-content.theme-github-dark {
+  background-color: #0d1117;
+  color: #c9d1d9;
+}
+
+.markdown-content.theme-github-light {
+  background-color: #ffffff;
+  color: #24292e;
+}
+
+.markdown-content.theme-vitesse-dark {
+  background-color: #121212;
+  color: #dbd7ca;
+}
+
+.markdown-content.theme-vitesse-light {
+  background-color: #ffffff;
+  color: #393a34;
+}
+
+.markdown-content.theme-nord {
+  background-color: #2e3440;
+  color: #d8dee9;
+}
+
+.markdown-content.theme-min-dark {
+  background-color: #1f1f1f;
+  color: #d4d4d4;
+}
+
+.markdown-content.theme-min-light {
+  background-color: #ffffff;
+  color: #2e2e2e;
+}
+
+.markdown-content.theme-rose-pine {
+  background-color: #191724;
+  color: #e0def4;
+}
+
+.markdown-content.theme-rose-pine-moon {
+  background-color: #232136;
+  color: #e0def4;
+}
+
+.markdown-content.theme-slack-dark {
+  background-color: #1a1d21;
+  color: #d1d2d3;
+}
+
+.markdown-content.theme-slack-ochin {
+  background-color: #1b2125;
+  color: #e6e6e6;
+}
+
+.markdown-content.theme-solarized-dark {
+  background-color: #002b36;
+  color: #93a1a1;
+}
+
+.markdown-content.theme-solarized-light {
+  background-color: #fdf6e3;
+  color: #586e75;
+}
+
+/* Markdown content general styles */
+.markdown-content {
+  line-height: 1.6;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.markdown-content pre {
+  margin: 0.5em 0;
+  padding: 0.5em;
+  overflow-x: auto;
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0.3em;
+}
+
+.theme-dark .markdown-content pre {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.markdown-content code {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.markdown-content:not(pre) > code {
+  padding: 0.2em 0.4em;
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0.3em;
+}
+
+.theme-dark .markdown-content:not(pre) > code {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Markdown elements styling */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content h1 { font-size: 1.8em; }
+.markdown-content h2 { font-size: 1.5em; }
+.markdown-content h3 { font-size: 1.3em; }
+
+.markdown-content ul, 
+.markdown-content ol {
+  margin-left: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content ul li {
+  list-style-type: disc;
+}
+
+.markdown-content ol li {
+  list-style-type: decimal;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid #aaa;
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  background: rgba(127, 127, 127, 0.1);
+  border-radius: 0 0.3em 0.3em 0;
+}
+
+.markdown-content a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
+
+.markdown-content p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content strong {
+  font-weight: bold;
+}
+
+.markdown-content em {
+  font-style: italic;
 }
 
 /* Ensure markdown styling works properly */

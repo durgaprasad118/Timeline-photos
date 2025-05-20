@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { getHighlighter, Highlighter } from 'shiki';
-import MarkdownRenderer from './MarkdownRenderer';
+import { useState, useEffect, useRef } from 'react';
+import { createHighlighter, type Highlighter } from 'shiki';
 
 // Default languages and themes
 const DEFAULT_LANGUAGES = [
@@ -18,10 +17,13 @@ const DEFAULT_LANGUAGES = [
   'java',
   'c',
   'cpp',
-];
+] as const;
+
+type SupportedLanguage = typeof DEFAULT_LANGUAGES[number];
 
 const DEFAULT_THEMES = [
   'vitesse-dark',
+  'slack-ochin',
   'nord',
   'vitesse-light',
   'github-dark',
@@ -31,13 +33,14 @@ const DEFAULT_THEMES = [
   'rose-pine',
   'rose-pine-moon',
   'slack-dark',
-  'slack-ochin',
   'solarized-dark',
   'solarized-light',
-];
+] as const;
+
+type SupportedTheme = typeof DEFAULT_THEMES[number];
 
 // Language-specific default code examples
-const DEFAULT_CODE_EXAMPLES = {
+const DEFAULT_CODE_EXAMPLES: Record<SupportedLanguage, string> = {
   markdown: `# Hello World
 
 This is a **markdown** example with:
@@ -146,64 +149,175 @@ user = User("World", 25)
 print(greet(user.name))
 print(user.describe())
 `,
+  rust: '',
+  go: '',
+  java: '',
+  c: '',
+  cpp: '',
+  json: '',
 };
 
 export default function ShikiPlayground() {
-  const [code, setCode] = useState(DEFAULT_CODE_EXAMPLES.markdown);
-  const [language, setLanguage] = useState('markdown');
-  const [theme, setTheme] = useState('vitesse-dark');
+  const [code, setCode] = useState<string>(DEFAULT_CODE_EXAMPLES.markdown);
+  const [language, setLanguage] = useState<SupportedLanguage>('markdown');
+  const [theme, setTheme] = useState<SupportedTheme>('slack-ochin');
   const [highlighter, setHighlighter] = useState<Highlighter | null>(null);
-  const [highlightedCode, setHighlightedCode] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [highlightedCode, setHighlightedCode] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const shikiContainerRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Initialize the highlighter for non-markdown languages
+  // Initialize the highlighter for all languages
   useEffect(() => {
-    if (language !== 'markdown') {
-      const initHighlighter = async () => {
-        try {
-          const shikiHighlighter = await getHighlighter({
-            langs: DEFAULT_LANGUAGES.filter(lang => lang !== 'markdown'),
-            themes: DEFAULT_THEMES,
-          });
-          setHighlighter(shikiHighlighter);
-          setIsLoading(false);
-        } catch (error) {
-          console.error('Failed to initialize Shiki:', error);
-        }
-      };
+    const initHighlighter = async () => {
+      try {
+        setIsLoading(true); // Make sure loading state is set before initialization
+        const shikiHighlighter = await createHighlighter({
+          langs: [...DEFAULT_LANGUAGES, 'md'], // Explicitly add 'md' for markdown
+          themes: [...DEFAULT_THEMES],
+        });
+        setHighlighter(shikiHighlighter);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Failed to initialize Shiki:', error);
+        setIsLoading(false);
+      }
+    };
 
-      initHighlighter();
-    } else {
-      // For markdown, we don't need the highlighter
-      setIsLoading(false);
-    }
-  }, [language]);
+    initHighlighter();
+  }, []);
 
-  // Update highlighted code when code, language, or theme changes
+  // Re-render markdown code with any updates
   useEffect(() => {
-    if (highlighter && language !== 'markdown') {
+    if (language === 'markdown' && highlighter && !isLoading) {
       try {
         const html = highlighter.codeToHtml(code, {
-          lang: language,
+          lang: 'md',
           theme: theme,
         });
         setHighlightedCode(html);
       } catch (error) {
+        console.error('Failed to update markdown:', error);
+      }
+    }
+  }, [code, language, theme, highlighter, isLoading]);
+
+  // Helper function to get the correct language identifier
+  const getLanguageIdentifier = (lang: string, highlighter: Highlighter): string => {
+    // Special case for markdown
+    if (lang === 'markdown') {
+      return 'md';
+    }
+    
+    // Check if language is supported directly
+    const languages = highlighter.getLoadedLanguages();
+    if (languages.includes(lang)) return lang;
+    
+    // For unsupported languages, fall back to text
+    console.log(`Language not directly supported: ${lang}. Using text.`);
+    return 'text';
+  };
+
+  // Update highlighted code when code, language, or theme changes
+  useEffect(() => {
+    if (highlighter) {
+      try {
+        // Set loading state when changing code or language
+        setIsLoading(true);
+        
+        // Get the correct language identifier
+        const langToUse = getLanguageIdentifier(language, highlighter);
+        console.log(`Using language: ${langToUse} for ${language}`);
+        
+        const html = highlighter.codeToHtml(code, {
+          lang: langToUse,
+          theme: theme,
+        });
+        
+        setHighlightedCode(html);
+        // Set loading to false after highlighting is complete
+        setIsLoading(false);
+      } catch (error) {
         console.error('Failed to highlight code:', error);
+        setIsLoading(false);
       }
     }
   }, [code, language, theme, highlighter]);
 
+  // Apply theme class to shiki element
+  useEffect(() => {
+    if (shikiContainerRef.current && !isLoading) {
+      // Find all shiki elements
+      const shikiElements = shikiContainerRef.current.querySelectorAll('.shiki');
+      
+      // Remove all theme classes and add the current theme
+      shikiElements.forEach(element => {
+        // Remove existing theme classes
+        DEFAULT_THEMES.forEach(themeClass => {
+          element.classList.remove(themeClass);
+        });
+        
+        // Add the current theme class
+        element.classList.add(theme);
+        
+        // Set background color based on theme - use type assertion for TypeScript
+        const htmlElement = element as HTMLElement;
+        htmlElement.style.backgroundColor = 'transparent';
+      });
+      
+      // Also style the container for consistent theme
+      if (shikiContainerRef.current) {
+        const container = shikiContainerRef.current.closest('.relative');
+        if (container && container instanceof HTMLElement) {
+          // Apply theme classes to container
+          DEFAULT_THEMES.forEach(themeClass => {
+            container.classList.remove(themeClass);
+          });
+          container.classList.add(theme);
+        }
+      }
+    }
+  }, [highlightedCode, theme, isLoading]);
+
+  // Sync scroll positions between textarea and highlighted code
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    const codeContainer = shikiContainerRef.current;
+    
+    if (!textarea || !codeContainer) return;
+    
+    const syncScroll = () => {
+      codeContainer.scrollTop = textarea.scrollTop;
+      codeContainer.scrollLeft = textarea.scrollLeft;
+    };
+    
+    textarea.addEventListener('scroll', syncScroll);
+    return () => {
+      textarea.removeEventListener('scroll', syncScroll);
+    };
+  }, []);
+
   // Handle language change
   const handleLanguageChange = (newLanguage: string) => {
-    setLanguage(newLanguage);
-    // Only change the code if we have a default example for this language
-    if (DEFAULT_CODE_EXAMPLES[newLanguage]) {
-      setCode(DEFAULT_CODE_EXAMPLES[newLanguage]);
+    const typedLanguage = newLanguage as SupportedLanguage;
+    
+    // If current language is markdown or new language is markdown
+    // We need to force a refresh by temporarily setting loading to true
+    if (language === 'markdown' || typedLanguage === 'markdown') {
+      setIsLoading(true);
     }
     
-    // Reset loading state when changing languages
-    setIsLoading(true);
+    setLanguage(typedLanguage);
+    
+    // Only change the code if we have a default example for this language
+    if (Object.prototype.hasOwnProperty.call(DEFAULT_CODE_EXAMPLES, typedLanguage)) {
+      setCode(DEFAULT_CODE_EXAMPLES[typedLanguage]);
+    }
+    
+    // Only set loading to true if we don't have a highlighter yet
+    if (!highlighter) {
+      setIsLoading(true);
+    }
   };
 
   // Format the theme name for display
@@ -230,7 +344,7 @@ export default function ShikiPlayground() {
             onChange={(e) => handleLanguageChange(e.target.value)}
             className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-neutral-800 text-gray-900 dark:text-gray-100"
           >
-            {DEFAULT_LANGUAGES.map((lang) => (
+            {[...DEFAULT_LANGUAGES].map((lang) => (
               <option key={lang} value={lang}>
                 {lang.charAt(0).toUpperCase() + lang.slice(1)}
               </option>
@@ -245,10 +359,10 @@ export default function ShikiPlayground() {
           <select
             id="theme"
             value={theme}
-            onChange={(e) => setTheme(e.target.value)}
+            onChange={(e) => setTheme(e.target.value as SupportedTheme)}
             className="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-neutral-800 text-gray-900 dark:text-gray-100"
           >
-            {DEFAULT_THEMES.map((t) => (
+            {[...DEFAULT_THEMES].map((t) => (
               <option key={t} value={t}>
                 {formatThemeName(t)}
               </option>
@@ -273,21 +387,35 @@ export default function ShikiPlayground() {
           </div>
         </div>
 
-        {/* Single column editor */}
-        <div className="relative bg-white dark:bg-neutral-900">
+        {/* Unified editor for all languages */}
+        <div className="relative bg-transparent" style={{ height: '24rem' }}>
           <textarea
+            ref={textareaRef}
             value={code}
-            onChange={(e) => setCode(e.target.value)}
-            className="w-full h-96 p-4 font-mono text-sm bg-transparent text-transparent caret-black dark:caret-white focus:outline-none resize-none absolute inset-0 z-10"
+            onChange={(e) => {
+              const newCode = e.target.value;
+              setCode(newCode);
+              // Force re-highlighting for markdown to ensure it updates properly
+              if (language === 'markdown') {
+                setIsLoading(true);
+                // Use a small timeout to ensure state updates properly
+                setTimeout(() => setIsLoading(false), 10);
+              }
+            }}
+            className="w-full h-full p-4 font-mono text-sm bg-transparent text-transparent caret-black dark:caret-white focus:outline-none resize-none absolute inset-0 z-20"
             spellCheck="false"
+            autoCapitalize="off"
+            autoComplete="off"
+            autoCorrect="off"
           />
-          <div className="w-full h-96 p-4 font-mono text-sm overflow-auto shiki-container">
+          <div 
+            ref={shikiContainerRef}
+            className="w-full h-full p-4 font-mono text-sm overflow-auto shiki-container absolute inset-0 z-10"
+          >
             {isLoading ? (
               <div className="flex items-center justify-center h-full">
                 <p className="text-gray-500 dark:text-gray-400">Loading...</p>
               </div>
-            ) : language === 'markdown' ? (
-              <MarkdownRenderer code={code} theme={theme} />
             ) : (
               <div 
                 className="pointer-events-none" 
@@ -311,9 +439,51 @@ export default function ShikiPlayground() {
         .shiki-container code {
           font-family: inherit;
           white-space: pre;
+          position: relative;
         }
         .shiki {
           background: transparent !important;
+        }
+        .pointer-events-none {
+          position: relative;
+        }
+        textarea.text-transparent {
+          color: transparent !important;
+          caret-color: #fff; /* Ensure caret is visible */
+        }
+        
+        /* Ensure the editor takes the full height */
+        .relative {
+          position: relative;
+        }
+        
+        textarea:focus {
+          outline: none !important;
+        }
+        
+        /* Theme background colors for the container */
+        .relative.vitesse-dark { background-color: #121212 !important; }
+        .relative.vitesse-light { background-color: #ffffff !important; }
+        .relative.slack-ochin { background-color: #1b2125 !important; }
+        .relative.nord { background-color: #2e3440 !important; }
+        .relative.github-dark { background-color: #0d1117 !important; }
+        .relative.github-light { background-color: #ffffff !important; }
+        .relative.min-dark { background-color: #1f1f1f !important; }
+        .relative.min-light { background-color: #ffffff !important; }
+        .relative.rose-pine { background-color: #191724 !important; }
+        .relative.rose-pine-moon { background-color: #232136 !important; }
+        .relative.slack-dark { background-color: #1a1d21 !important; }
+        .relative.solarized-dark { background-color: #002b36 !important; }
+        .relative.solarized-light { background-color: #fdf6e3 !important; }
+        
+        /* Dark mode adjustments for caret */
+        .dark textarea.text-transparent {
+          caret-color: #fff;
+        }
+        
+        /* Light mode adjustments for caret */
+        textarea.text-transparent {
+          caret-color: #000;
         }
       `}</style>
     </div>
