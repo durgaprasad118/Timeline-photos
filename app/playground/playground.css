@@ -312,21 +312,39 @@ pre.shiki code.language-markdown {
 
 /* Markdown content general styles */
 .markdown-content {
-  line-height: 1.6;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
-  overflow: auto;
+  display: block !important;
+  position: relative !important;
+  height: auto !important;
 }
 
-.markdown-content pre {
-  margin: 0.5em 0;
-  padding: 0.5em;
-  overflow-x: auto;
-  background: rgba(0, 0, 0, 0.1) !important;
-  border-radius: 0.3em;
+.markdown-content * {
+  white-space: normal;
 }
+
+.markdown-content pre,
+.markdown-content code {
+  display: block !important;
+  position: relative !important;
+}
+
+/* Fix for markdown to ensure it takes up the full space in the playground */
+.pointer-events-none {
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure textarea works with markdown */
+.relative textarea {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  tab-size: 2 !important;
+}
+
+/* For troubleshooting, uncomment to see textarea content
+.relative textarea {
+  opacity: 0.3;
+}
+*/
 
 .theme-dark .markdown-content pre {
   background: rgba(255, 255, 255, 0.1) !important;
@@ -354,9 +372,10 @@ pre.shiki code.language-markdown {
 .markdown-content h4,
 .markdown-content h5,
 .markdown-content h6 {
-  font-weight: bold;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+  display: block !important;
+  margin-top: 1em !important;
+  margin-bottom: 0.5em !important;
+  position: relative !important;
 }
 
 .markdown-content h1 { font-size: 1.8em; }
@@ -486,4 +505,328 @@ pre.shiki code.language-markdown {
 .markdown-content p {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+}
+
+/* Editor structure */
+.editor-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.editor-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Textarea styling for proper editing */
+textarea {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  tab-size: 2;
+  white-space: pre-wrap !important;
+  overflow-wrap: break-word !important;
+  overflow: auto !important;
+  resize: none !important;
+  outline: none !important;
+  caret-shape: bar;
+}
+
+/* Markdown styling */
+.markdown-content {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-wrap: break-word;
+  word-break: normal;
+  white-space: pre-wrap;
+}
+
+/* Ensure proper rendering of markdown elements */
+.markdown-content p,
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6,
+.markdown-content blockquote,
+.markdown-content ul,
+.markdown-content ol {
+  white-space: pre-wrap;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+  margin: 0;
+  padding: 0;
+}
+
+.markdown-content h1 { 
+  font-size: 1.5em; 
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content h2 { 
+  font-size: 1.3em; 
+  font-weight: bold;
+  margin-bottom: 0.4em;
+}
+
+.markdown-content h3 { 
+  font-size: 1.1em; 
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 2em;
+  margin: 0.5em 0;
+}
+
+.markdown-content li {
+  margin: 0.25em 0;
+}
+
+.markdown-content blockquote {
+  padding-left: 1em;
+  border-left: 3px solid rgba(128, 128, 128, 0.5);
+  margin: 0.5em 0;
+}
+
+.markdown-content code {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+  background-color: rgba(0,0,0,0.05);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+.markdown-content pre {
+  margin: 0.5em 0;
+  padding: 0.5em;
+  background-color: rgba(0,0,0,0.05) !important;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+  white-space: pre;
+}
+
+/* Ensure textarea and content are perfectly aligned */
+.editor-container {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Special fix for monospace rendering */
+@font-face {
+  font-family: 'editor-monospace';
+  src: local('Menlo'), local('Monaco'), local('Courier New'), monospace;
+  font-display: swap;
+}
+
+.editor-textarea,
+.editor-content,
+.markdown-content,
+.shiki,
+.shiki code {
+  font-family: 'editor-monospace', monospace !important;
+}
+
+/* Fix for scroll sync */
+.editor-textarea {
+  overflow: auto !important;
+}
+
+.editor-content {
+  pointer-events: none !important;
+}
+
+/* Fix markdown ordering issues */
+.markdown-content {
+  display: block !important;
+  position: relative !important;
+  height: auto !important;
+}
+
+/* Ensure markdown appears in correct order */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  display: block !important;
+  margin-top: 1em !important;
+  margin-bottom: 0.5em !important;
+  position: relative !important;
+}
+
+/* Fix order for code blocks */
+.markdown-content pre,
+.markdown-content code {
+  display: block !important;
+  position: relative !important;
+}
+
+/* Fix display for inline elements */
+.markdown-content em,
+.markdown-content strong,
+.markdown-content a {
+  display: inline !important;
+  position: relative !important;
+}
+
+/* Fix for editor content display */
+.editor-content {
+  position: absolute !important;
+  height: 100% !important;
+  overflow: auto !important;
+}
+
+/* Ensure editor content has proper stacking */
+.editor-container > * {
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+/* Fix for absolute positioning in markdown */
+.markdown-render {
+  position: relative !important; 
+  height: auto !important;
+  min-height: 100% !important;
+}
+
+/* Override absolute positioning from earlier CSS */
+.editor-textarea {
+  position: absolute !important;
+}
+
+/* Make sure code blocks in markdown render properly */
+.shiki {
+  position: relative !important;
+  display: block !important;
+  margin: 1em 0 !important;
+}
+
+/* Fix for markdown in different color themes */
+.theme-vitesse-dark .markdown-content,
+.theme-slack-ochin .markdown-content,
+.theme-nord .markdown-content,
+.theme-github-dark .markdown-content,
+.theme-min-dark .markdown-content,
+.theme-rose-pine .markdown-content,
+.theme-rose-pine-moon .markdown-content,
+.theme-slack-dark .markdown-content,
+.theme-solarized-dark .markdown-content {
+  color: #e0e0e0 !important;
+}
+
+.theme-vitesse-light .markdown-content,
+.theme-github-light .markdown-content,
+.theme-min-light .markdown-content,
+.theme-solarized-light .markdown-content {
+  color: #2c2c2c !important;
+}
+
+/* Fix cursor alignment issues */
+.editor-textarea,
+.editor-content,
+.markdown-content,
+.shiki,
+.shiki code {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  tab-size: 2;
+  padding: 1rem !important;
+  margin: 0 !important;
+  white-space: pre-wrap !important;
+  letter-spacing: 0 !important;
+  word-spacing: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Override any inherited styles for perfect alignment */
+.markdown-render * {
+  font-family: monospace !important;
+  letter-spacing: 0 !important;
+  word-spacing: 0 !important;
+}
+
+/* Allow specific elements to render differently */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  font-weight: bold !important;
+  white-space: pre-wrap !important;
+}
+
+.markdown-content ul li,
+.markdown-content ol li {
+  white-space: pre-wrap !important;
+}
+
+/* Fix for inline code in markdown */
+.markdown-content *:not(pre) > code {
+  white-space: pre-wrap !important;
+  background-color: rgba(0,0,0,0.05);
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+/* Fix for code blocks in markdown */
+.markdown-content pre {
+  white-space: pre !important;
+  background-color: rgba(0,0,0,0.05) !important;
+  padding: 0.5em !important;
+  margin: 0.5em 0 !important;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.markdown-content pre code {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Ensure textarea and content are perfectly aligned */
+.editor-container {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Special fix for monospace rendering */
+@font-face {
+  font-family: 'editor-monospace';
+  src: local('Menlo'), local('Monaco'), local('Courier New'), monospace;
+  font-display: swap;
+}
+
+.editor-textarea,
+.editor-content,
+.markdown-content,
+.shiki,
+.shiki code {
+  font-family: 'editor-monospace', monospace !important;
+}
+
+/* Fix for scroll sync */
+.editor-textarea {
+  overflow: auto !important;
+}
+
+.editor-content {
+  pointer-events: none !important;
 } 

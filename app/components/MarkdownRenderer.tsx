@@ -1,89 +1,110 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect, memo, useRef } from 'react';
 import MarkdownIt from 'markdown-it';
+import Shiki from '@shikijs/markdown-it';
 
 interface MarkdownRendererProps {
   code: string;
   theme: string;
 }
 
-export default function MarkdownRenderer({ code, theme }: MarkdownRendererProps) {
+// Define a type for markdown-it instance
+interface MarkdownItInstance {
+  render: (source: string) => string;
+  use: (plugin: unknown) => MarkdownItInstance;
+}
+
+// Memoize the component to prevent unnecessary re-renders
+const MarkdownRenderer = memo(({ code, theme }: MarkdownRendererProps) => {
   const [renderedHTML, setRenderedHTML] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const mdRef = useRef<MarkdownItInstance | null>(null);
 
-  // Initialize markdown-it with Shiki
+  // Initialize markdown-it once
   useEffect(() => {
     const initMarkdownIt = async () => {
       try {
-        // Create a basic markdown-it instance first
-        const md = new MarkdownIt({
+        // Create markdown-it instance with options
+        const md = MarkdownIt({
           html: true,
           linkify: true,
-          typographer: true
+          typographer: true,
+          breaks: true, // Convert \n to <br>
+          highlight: undefined // Let Shiki handle highlighting
+        }) as MarkdownItInstance;
+        
+        // Configure Shiki with the current theme
+        const shikiPlugin = await Shiki({
+          themes: {
+            light: theme.includes('light') ? theme : 'vitesse-light',
+            dark: theme.includes('dark') ? theme : 'vitesse-dark',
+          },
+          defaultColor: false
         });
         
-        // Use a simple approach for code blocks first
-        md.set({ highlight: function(str, lang) {
-          return `<pre class="language-${lang}"><code>${md.utils.escapeHtml(str)}</code></pre>`;
-        }});
+        // Apply Shiki plugin to markdown-it
+        md.use(shikiPlugin);
+        mdRef.current = md;
         
-        // Render the markdown
-        let html = md.render(code);
-        
-        // Then try to enhance with Shiki if available
-        try {
-          const { renderToHtml } = await import('shiki');
-          
-          // Find all code blocks and re-render them with Shiki
-          const codeBlockRegex = /<pre class="language-([^"]+)"><code>([\s\S]*?)<\/code><\/pre>/g;
-          
-          html = html.replace(codeBlockRegex, (match, language, content) => {
-            try {
-              // Unescape the HTML content
-              const decodedContent = md.utils.unescapeHtml(content);
-              
-              // Return the original if language not supported
-              if (!language || language === 'null') {
-                return `<pre class="language-text"><code>${decodedContent}</code></pre>`;
-              }
-              
-              // Try to render with Shiki theme
-              return `<div class="code-block ${theme}"><pre class="language-${language}"><code>${decodedContent}</code></pre></div>`;
-            } catch (e) {
-              return match; // Return original on error
-            }
-          });
-        } catch (e) {
-          console.warn('Shiki import failed, using basic syntax highlighting');
-        }
-        
-        setRenderedHTML(html);
+        // Initial render
+        setRenderedHTML(md.render(code));
         setIsLoading(false);
       } catch (error) {
-        console.error('Failed to initialize markdown-it:', error);
-        // Fallback to very basic rendering
-        setRenderedHTML(`<div>${code.replace(/\n/g, '<br>')}</div>`);
+        console.error('Error initializing markdown-it:', error);
+        // Fallback to basic markdown-it
+        const fallbackMd = MarkdownIt({
+          html: true,
+          breaks: true,
+          linkify: true
+        }) as MarkdownItInstance;
+        mdRef.current = fallbackMd;
+        setRenderedHTML(fallbackMd.render(code));
         setIsLoading(false);
       }
     };
 
     initMarkdownIt();
-  }, [code, theme]);
+  }, [theme]); // Only re-initialize when theme changes
 
-  // Apply theme class to handle background colors
-  const themeClass = theme.includes('dark') ? 'theme-dark' : 'theme-light';
-  const specificThemeClass = `theme-${theme}`;
+  // Update rendered HTML when code changes
+  useEffect(() => {
+    if (mdRef.current && !isLoading) {
+      try {
+        const html = mdRef.current.render(code);
+        setRenderedHTML(html);
+      } catch (error) {
+        console.error('Error rendering markdown:', error);
+      }
+    }
+  }, [code, isLoading]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <p className="text-gray-500 dark:text-gray-400">Rendering markdown...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className={`markdown-content ${themeClass} ${specificThemeClass}`}>
-      {isLoading ? (
-        <div className="flex items-center justify-center h-full">
-          <p className="text-gray-500 dark:text-gray-400">Loading...</p>
-        </div>
-      ) : (
-        <div dangerouslySetInnerHTML={{ __html: renderedHTML }} />
-      )}
-    </div>
+    <div 
+      className={`markdown-content theme-${theme} w-full h-full markdown-render`}
+      style={{
+        fontFamily: 'Menlo, Monaco, Courier New, monospace',
+        fontSize: '14px',
+        lineHeight: '1.5',
+        letterSpacing: 'normal',
+        wordSpacing: 'normal',
+        whiteSpace: 'pre-wrap',
+        overflowWrap: 'break-word'
+      }}
+      dangerouslySetInnerHTML={{ __html: renderedHTML }}
+    />
   );
-} 
+});
+
+// Add display name for better debugging
+MarkdownRenderer.displayName = 'MarkdownRenderer';
+
+export default MarkdownRenderer; 

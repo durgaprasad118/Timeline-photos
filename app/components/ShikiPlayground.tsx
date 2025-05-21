@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { createHighlighter, type Highlighter } from 'shiki';
+import MarkdownRenderer from './MarkdownRenderer';
 
 // Default languages and themes
 const DEFAULT_LANGUAGES = [
@@ -44,11 +45,13 @@ const DEFAULT_CODE_EXAMPLES: Record<SupportedLanguage, string> = {
   markdown: `# Hello World
 
 This is a **markdown** example with:
+
 - Bullet points
 - *Italic text*
 - **Bold text**
 
 ## Code Example
+
 \`\`\`javascript
 function greet() {
   return "Hello from markdown!";
@@ -166,6 +169,7 @@ export default function ShikiPlayground() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const shikiContainerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
 
   // Initialize the highlighter for all languages
   useEffect(() => {
@@ -220,7 +224,7 @@ export default function ShikiPlayground() {
 
   // Update highlighted code when code, language, or theme changes
   useEffect(() => {
-    if (highlighter) {
+    if (highlighter && language !== 'markdown') {
       try {
         // Set loading state when changing code or language
         setIsLoading(true);
@@ -279,23 +283,56 @@ export default function ShikiPlayground() {
     }
   }, [highlightedCode, theme, isLoading]);
 
-  // Sync scroll positions between textarea and highlighted code
+  // Setup scroll synchronization
   useEffect(() => {
     const textarea = textareaRef.current;
-    const codeContainer = shikiContainerRef.current;
+    const contentContainer = editorRef.current?.querySelector('.editor-content');
     
-    if (!textarea || !codeContainer) return;
+    if (!textarea || !contentContainer) return;
     
     const syncScroll = () => {
-      codeContainer.scrollTop = textarea.scrollTop;
-      codeContainer.scrollLeft = textarea.scrollLeft;
+      contentContainer.scrollTop = textarea.scrollTop;
+      contentContainer.scrollLeft = textarea.scrollLeft;
     };
     
     textarea.addEventListener('scroll', syncScroll);
+    textarea.addEventListener('input', syncScroll);
+    
     return () => {
       textarea.removeEventListener('scroll', syncScroll);
+      textarea.removeEventListener('input', syncScroll);
     };
   }, []);
+
+  // Setup the editor synchronization
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    const editor = editorRef.current;
+    
+    if (!textarea || !editor) return;
+    
+    // Function to position cursor properly
+    const updateCursor = () => {
+      if (language === 'markdown') {
+        // For markdown, we need to make sure the cursor is visible
+        textarea.style.color = 'transparent';
+        textarea.style.caretColor = theme.includes('dark') ? 'white' : 'black';
+      }
+    };
+    
+    // Initialize
+    updateCursor();
+    
+    // Add focus event listener
+    const handleFocus = () => {
+      updateCursor();
+    };
+    
+    textarea.addEventListener('focus', handleFocus);
+    return () => {
+      textarea.removeEventListener('focus', handleFocus);
+    };
+  }, [language, theme]);
 
   // Handle language change
   const handleLanguageChange = (newLanguage: string) => {
@@ -330,6 +367,127 @@ export default function ShikiPlayground() {
 
   // Create a code tag with the correct language
   const codeTag = `</> ${language.charAt(0).toUpperCase() + language.slice(1)}`;
+
+  // Handle special key events for better editing experience
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const textarea = e.currentTarget;
+    
+    // Tab key for indentation
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      
+      // If there's a selection, indent/unindent the selected lines
+      if (start !== end) {
+        const selectedText = code.substring(start, end);
+        const lines = selectedText.split('\n');
+        
+        // Add or remove indentation
+        const indentedText = e.shiftKey
+          ? lines.map(line => line.startsWith('  ') ? line.substring(2) : line).join('\n')
+          : lines.map(line => '  ' + line).join('\n');
+        
+        const newValue = code.substring(0, start) + indentedText + code.substring(end);
+        setCode(newValue);
+        
+        // Adjust selection to maintain the same selected lines
+        setTimeout(() => {
+          textarea.selectionStart = start;
+          textarea.selectionEnd = start + indentedText.length;
+        }, 0);
+      } else {
+        // No selection, just insert a tab at cursor position
+        const newValue = code.substring(0, start) + '  ' + code.substring(end);
+        setCode(newValue);
+        
+        // Set cursor position after tab
+        setTimeout(() => {
+          textarea.selectionStart = textarea.selectionEnd = start + 2;
+        }, 0);
+      }
+      return;
+    }
+    
+    // Handle Enter key to preserve indentation
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      
+      // Get current line's indentation
+      const currentLine = code.substring(0, start).split('\n').pop() || '';
+      const indentation = currentLine.match(/^\s*/)?.[0] || '';
+      
+      // Insert newline with the same indentation
+      const newValue = code.substring(0, start) + '\n' + indentation + code.substring(end);
+      setCode(newValue);
+      
+      // Set cursor position after indentation
+      setTimeout(() => {
+        textarea.selectionStart = textarea.selectionEnd = start + 1 + indentation.length;
+      }, 0);
+      return;
+    }
+  };
+
+  // Render specific editor based on language
+  const renderEditor = () => {
+    if (isLoading) {
+      return (
+        <div className="flex items-center justify-center h-full">
+          <p className="text-gray-500 dark:text-gray-400">Loading...</p>
+        </div>
+      );
+    }
+    
+    return (
+      <div ref={editorRef} className="editor-container w-full h-full relative">
+        {/* Common textarea for all languages */}
+        <textarea
+          ref={textareaRef}
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className="w-full h-full p-4 font-mono text-sm bg-transparent resize-none absolute inset-0 z-20 focus:outline-none editor-textarea"
+          style={{ 
+            caretColor: theme.includes('dark') ? 'white' : 'black',
+            color: 'rgba(0,0,0,0.0)',
+            fontFamily: 'Menlo, Monaco, Courier New, monospace',
+            fontSize: '14px',
+            lineHeight: '1.5',
+            tabSize: 2,
+            letterSpacing: 'normal',
+            wordSpacing: 'normal'
+          }}
+          spellCheck="false"
+          autoCapitalize="off"
+          autoComplete="off"
+          autoCorrect="off"
+          data-gramm="false"
+        />
+        
+        {/* Language specific content */}
+        <div 
+          className="w-full h-full p-4 font-mono text-sm overflow-auto absolute inset-0 z-10 pointer-events-none editor-content"
+          style={{
+            fontFamily: 'Menlo, Monaco, Courier New, monospace',
+            fontSize: '14px',
+            lineHeight: '1.5',
+            tabSize: 2,
+            letterSpacing: 'normal',
+            wordSpacing: 'normal'
+          }}
+        >
+          {language === 'markdown' ? (
+            <MarkdownRenderer code={code} theme={theme} />
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="flex flex-col space-y-6 w-full max-w-4xl mx-auto">
@@ -387,104 +545,84 @@ export default function ShikiPlayground() {
           </div>
         </div>
 
-        {/* Unified editor for all languages */}
-        <div className="relative bg-transparent" style={{ height: '24rem' }}>
-          <textarea
-            ref={textareaRef}
-            value={code}
-            onChange={(e) => {
-              const newCode = e.target.value;
-              setCode(newCode);
-              // Force re-highlighting for markdown to ensure it updates properly
-              if (language === 'markdown') {
-                setIsLoading(true);
-                // Use a small timeout to ensure state updates properly
-                setTimeout(() => setIsLoading(false), 10);
-              }
-            }}
-            className="w-full h-full p-4 font-mono text-sm bg-transparent text-transparent caret-black dark:caret-white focus:outline-none resize-none absolute inset-0 z-20"
-            spellCheck="false"
-            autoCapitalize="off"
-            autoComplete="off"
-            autoCorrect="off"
-          />
-          <div 
-            ref={shikiContainerRef}
-            className="w-full h-full p-4 font-mono text-sm overflow-auto shiki-container absolute inset-0 z-10"
-          >
-            {isLoading ? (
-              <div className="flex items-center justify-center h-full">
-                <p className="text-gray-500 dark:text-gray-400">Loading...</p>
-              </div>
-            ) : (
-              <div 
-                className="pointer-events-none" 
-                dangerouslySetInnerHTML={{ __html: highlightedCode }}
-              />
-            )}
-          </div>
+        {/* Editor container */}
+        <div 
+          ref={shikiContainerRef}
+          className={`editor-wrapper relative bg-transparent ${theme}`}
+          style={{ height: '24rem' }}
+        >
+          {renderEditor()}
         </div>
       </div>
       
-      <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
-        Powered by <a href="https://shiki.style" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 hover:underline">Shiki</a>
-      </div>
+  
 
       {/* Add CSS for Shiki styling */}
       <style jsx global>{`
+        .editor-wrapper {
+          overflow: hidden;
+        }
+        
+        .editor-container {
+          position: relative;
+        }
+        
+        .editor-textarea, .editor-content {
+          font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+          font-size: 14px !important;
+          line-height: 1.5 !important;
+          letter-spacing: normal !important;
+          word-spacing: normal !important;
+          tab-size: 2 !important;
+          white-space: pre-wrap !important;
+          padding: 1rem !important;
+          box-sizing: border-box !important;
+        }
+        
+        /* Fix character width for monospace alignment */
+        .editor-textarea, .editor-content, 
+        .markdown-content, .markdown-content pre, 
+        .markdown-content code, .shiki, .shiki code {
+          font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
+          font-size: 14px !important;
+          line-height: 1.5 !important;
+          letter-spacing: normal !important;
+          word-spacing: normal !important;
+        }
+        
         .shiki-container pre {
           margin: 0;
           background: transparent !important;
         }
+        
         .shiki-container code {
           font-family: inherit;
           white-space: pre;
           position: relative;
         }
+        
         .shiki {
           background: transparent !important;
         }
+        
         .pointer-events-none {
           position: relative;
         }
-        textarea.text-transparent {
-          color: transparent !important;
-          caret-color: #fff; /* Ensure caret is visible */
-        }
-        
-        /* Ensure the editor takes the full height */
-        .relative {
-          position: relative;
-        }
-        
-        textarea:focus {
-          outline: none !important;
-        }
         
         /* Theme background colors for the container */
-        .relative.vitesse-dark { background-color: #121212 !important; }
-        .relative.vitesse-light { background-color: #ffffff !important; }
-        .relative.slack-ochin { background-color: #1b2125 !important; }
-        .relative.nord { background-color: #2e3440 !important; }
-        .relative.github-dark { background-color: #0d1117 !important; }
-        .relative.github-light { background-color: #ffffff !important; }
-        .relative.min-dark { background-color: #1f1f1f !important; }
-        .relative.min-light { background-color: #ffffff !important; }
-        .relative.rose-pine { background-color: #191724 !important; }
-        .relative.rose-pine-moon { background-color: #232136 !important; }
-        .relative.slack-dark { background-color: #1a1d21 !important; }
-        .relative.solarized-dark { background-color: #002b36 !important; }
-        .relative.solarized-light { background-color: #fdf6e3 !important; }
-        
-        /* Dark mode adjustments for caret */
-        .dark textarea.text-transparent {
-          caret-color: #fff;
-        }
-        
-        /* Light mode adjustments for caret */
-        textarea.text-transparent {
-          caret-color: #000;
-        }
+        .editor-wrapper.vitesse-dark { background-color: #121212 !important; }
+        .editor-wrapper.vitesse-light { background-color: #ffffff !important; }
+        .editor-wrapper.slack-ochin { background-color: #1b2125 !important; }
+        .editor-wrapper.nord { background-color: #2e3440 !important; }
+        .editor-wrapper.github-dark { background-color: #0d1117 !important; }
+        .editor-wrapper.github-light { background-color: #ffffff !important; }
+        .editor-wrapper.min-dark { background-color: #1f1f1f !important; }
+        .editor-wrapper.min-light { background-color: #ffffff !important; }
+        .editor-wrapper.rose-pine { background-color: #191724 !important; }
+        .editor-wrapper.rose-pine-moon { background-color: #232136 !important; }
+        .editor-wrapper.slack-dark { background-color: #1a1d21 !important; }
+        .editor-wrapper.solarized-dark { background-color: #002b36 !important; }
+        .editor-wrapper.solarized-light { background-color: #fdf6e3 !important; }
       `}</style>
     </div>
   );
