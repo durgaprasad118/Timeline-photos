@@ -28,6 +28,26 @@ export type Collection = $Result.DefaultSelection<Prisma.$CollectionPayload>
  * 
  */
 export type Memory = $Result.DefaultSelection<Prisma.$MemoryPayload>
+/**
+ * Model ProgressEntry
+ * 
+ */
+export type ProgressEntry = $Result.DefaultSelection<Prisma.$ProgressEntryPayload>
+/**
+ * Model ProgressImage
+ * 
+ */
+export type ProgressImage = $Result.DefaultSelection<Prisma.$ProgressImagePayload>
+/**
+ * Model UserStats
+ * 
+ */
+export type UserStats = $Result.DefaultSelection<Prisma.$UserStatsPayload>
+/**
+ * Model CalendarEvent
+ * 
+ */
+export type CalendarEvent = $Result.DefaultSelection<Prisma.$CalendarEventPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -183,6 +203,46 @@ export class PrismaClient<
     * ```
     */
   get memory(): Prisma.MemoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.progressEntry`: Exposes CRUD operations for the **ProgressEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProgressEntries
+    * const progressEntries = await prisma.progressEntry.findMany()
+    * ```
+    */
+  get progressEntry(): Prisma.ProgressEntryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.progressImage`: Exposes CRUD operations for the **ProgressImage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProgressImages
+    * const progressImages = await prisma.progressImage.findMany()
+    * ```
+    */
+  get progressImage(): Prisma.ProgressImageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userStats`: Exposes CRUD operations for the **UserStats** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserStats
+    * const userStats = await prisma.userStats.findMany()
+    * ```
+    */
+  get userStats(): Prisma.UserStatsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.calendarEvent`: Exposes CRUD operations for the **CalendarEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CalendarEvents
+    * const calendarEvents = await prisma.calendarEvent.findMany()
+    * ```
+    */
+  get calendarEvent(): Prisma.CalendarEventDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -625,7 +685,11 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Collection: 'Collection',
-    Memory: 'Memory'
+    Memory: 'Memory',
+    ProgressEntry: 'ProgressEntry',
+    ProgressImage: 'ProgressImage',
+    UserStats: 'UserStats',
+    CalendarEvent: 'CalendarEvent'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -644,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "collection" | "memory"
+      modelProps: "user" | "collection" | "memory" | "progressEntry" | "progressImage" | "userStats" | "calendarEvent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -846,6 +910,270 @@ export namespace Prisma {
           }
         }
       }
+      ProgressEntry: {
+        payload: Prisma.$ProgressEntryPayload<ExtArgs>
+        fields: Prisma.ProgressEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProgressEntryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProgressEntryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.ProgressEntryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProgressEntryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload>
+          }
+          findMany: {
+            args: Prisma.ProgressEntryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload>[]
+          }
+          create: {
+            args: Prisma.ProgressEntryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload>
+          }
+          createMany: {
+            args: Prisma.ProgressEntryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProgressEntryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload>
+          }
+          update: {
+            args: Prisma.ProgressEntryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProgressEntryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProgressEntryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProgressEntryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.ProgressEntryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProgressEntry>
+          }
+          groupBy: {
+            args: Prisma.ProgressEntryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProgressEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProgressEntryCountArgs<ExtArgs>
+            result: $Utils.Optional<ProgressEntryCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProgressImage: {
+        payload: Prisma.$ProgressImagePayload<ExtArgs>
+        fields: Prisma.ProgressImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProgressImageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProgressImageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload>
+          }
+          findFirst: {
+            args: Prisma.ProgressImageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProgressImageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload>
+          }
+          findMany: {
+            args: Prisma.ProgressImageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload>[]
+          }
+          create: {
+            args: Prisma.ProgressImageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload>
+          }
+          createMany: {
+            args: Prisma.ProgressImageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProgressImageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload>
+          }
+          update: {
+            args: Prisma.ProgressImageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.ProgressImageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProgressImageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProgressImageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressImagePayload>
+          }
+          aggregate: {
+            args: Prisma.ProgressImageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProgressImage>
+          }
+          groupBy: {
+            args: Prisma.ProgressImageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProgressImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProgressImageCountArgs<ExtArgs>
+            result: $Utils.Optional<ProgressImageCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserStats: {
+        payload: Prisma.$UserStatsPayload<ExtArgs>
+        fields: Prisma.UserStatsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserStatsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserStatsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          findFirst: {
+            args: Prisma.UserStatsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserStatsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          findMany: {
+            args: Prisma.UserStatsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>[]
+          }
+          create: {
+            args: Prisma.UserStatsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          createMany: {
+            args: Prisma.UserStatsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.UserStatsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          update: {
+            args: Prisma.UserStatsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserStatsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserStatsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UserStatsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserStatsPayload>
+          }
+          aggregate: {
+            args: Prisma.UserStatsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserStats>
+          }
+          groupBy: {
+            args: Prisma.UserStatsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserStatsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserStatsCountArgs<ExtArgs>
+            result: $Utils.Optional<UserStatsCountAggregateOutputType> | number
+          }
+        }
+      }
+      CalendarEvent: {
+        payload: Prisma.$CalendarEventPayload<ExtArgs>
+        fields: Prisma.CalendarEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CalendarEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CalendarEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+          }
+          findFirst: {
+            args: Prisma.CalendarEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CalendarEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+          }
+          findMany: {
+            args: Prisma.CalendarEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload>[]
+          }
+          create: {
+            args: Prisma.CalendarEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+          }
+          createMany: {
+            args: Prisma.CalendarEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CalendarEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+          }
+          update: {
+            args: Prisma.CalendarEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.CalendarEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CalendarEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CalendarEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CalendarEventPayload>
+          }
+          aggregate: {
+            args: Prisma.CalendarEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCalendarEvent>
+          }
+          groupBy: {
+            args: Prisma.CalendarEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CalendarEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CalendarEventCountArgs<ExtArgs>
+            result: $Utils.Optional<CalendarEventCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -933,6 +1261,10 @@ export namespace Prisma {
     user?: UserOmit
     collection?: CollectionOmit
     memory?: MemoryOmit
+    progressEntry?: ProgressEntryOmit
+    progressImage?: ProgressImageOmit
+    userStats?: UserStatsOmit
+    calendarEvent?: CalendarEventOmit
   }
 
   /* Types for Logging */
@@ -1028,10 +1360,12 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     collections: number
+    progressEntries: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     collections?: boolean | UserCountOutputTypeCountCollectionsArgs
+    progressEntries?: boolean | UserCountOutputTypeCountProgressEntriesArgs
   }
 
   // Custom InputTypes
@@ -1050,6 +1384,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCollectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CollectionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProgressEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressEntryWhereInput
   }
 
 
@@ -1081,6 +1422,37 @@ export namespace Prisma {
    */
   export type CollectionCountOutputTypeCountMemoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MemoryWhereInput
+  }
+
+
+  /**
+   * Count Type ProgressEntryCountOutputType
+   */
+
+  export type ProgressEntryCountOutputType = {
+    images: number
+  }
+
+  export type ProgressEntryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    images?: boolean | ProgressEntryCountOutputTypeCountImagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProgressEntryCountOutputType without action
+   */
+  export type ProgressEntryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntryCountOutputType
+     */
+    select?: ProgressEntryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProgressEntryCountOutputType without action
+   */
+  export type ProgressEntryCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressImageWhereInput
   }
 
 
@@ -1269,6 +1641,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     collections?: boolean | User$collectionsArgs<ExtArgs>
+    progressEntries?: boolean | User$progressEntriesArgs<ExtArgs>
+    userStats?: boolean | User$userStatsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1287,6 +1661,8 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     collections?: boolean | User$collectionsArgs<ExtArgs>
+    progressEntries?: boolean | User$progressEntriesArgs<ExtArgs>
+    userStats?: boolean | User$userStatsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1294,6 +1670,8 @@ export namespace Prisma {
     name: "User"
     objects: {
       collections: Prisma.$CollectionPayload<ExtArgs>[]
+      progressEntries: Prisma.$ProgressEntryPayload<ExtArgs>[]
+      userStats: Prisma.$UserStatsPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1644,6 +2022,8 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     collections<T extends User$collectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$collectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    progressEntries<T extends User$progressEntriesArgs<ExtArgs> = {}>(args?: Subset<T, User$progressEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    userStats<T extends User$userStatsArgs<ExtArgs> = {}>(args?: Subset<T, User$userStatsArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2044,6 +2424,49 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CollectionScalarFieldEnum | CollectionScalarFieldEnum[]
+  }
+
+  /**
+   * User.progressEntries
+   */
+  export type User$progressEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    where?: ProgressEntryWhereInput
+    orderBy?: ProgressEntryOrderByWithRelationInput | ProgressEntryOrderByWithRelationInput[]
+    cursor?: ProgressEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgressEntryScalarFieldEnum | ProgressEntryScalarFieldEnum[]
+  }
+
+  /**
+   * User.userStats
+   */
+  export type User$userStatsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    where?: UserStatsWhereInput
   }
 
   /**
@@ -4009,6 +4432,3894 @@ export namespace Prisma {
 
 
   /**
+   * Model ProgressEntry
+   */
+
+  export type AggregateProgressEntry = {
+    _count: ProgressEntryCountAggregateOutputType | null
+    _min: ProgressEntryMinAggregateOutputType | null
+    _max: ProgressEntryMaxAggregateOutputType | null
+  }
+
+  export type ProgressEntryMinAggregateOutputType = {
+    id: string | null
+    date: Date | null
+    title: string | null
+    description: string | null
+    postedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type ProgressEntryMaxAggregateOutputType = {
+    id: string | null
+    date: Date | null
+    title: string | null
+    description: string | null
+    postedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type ProgressEntryCountAggregateOutputType = {
+    id: number
+    date: number
+    title: number
+    description: number
+    postedAt: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type ProgressEntryMinAggregateInputType = {
+    id?: true
+    date?: true
+    title?: true
+    description?: true
+    postedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type ProgressEntryMaxAggregateInputType = {
+    id?: true
+    date?: true
+    title?: true
+    description?: true
+    postedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type ProgressEntryCountAggregateInputType = {
+    id?: true
+    date?: true
+    title?: true
+    description?: true
+    postedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type ProgressEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressEntry to aggregate.
+     */
+    where?: ProgressEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressEntries to fetch.
+     */
+    orderBy?: ProgressEntryOrderByWithRelationInput | ProgressEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProgressEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProgressEntries
+    **/
+    _count?: true | ProgressEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProgressEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProgressEntryMaxAggregateInputType
+  }
+
+  export type GetProgressEntryAggregateType<T extends ProgressEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateProgressEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProgressEntry[P]>
+      : GetScalarType<T[P], AggregateProgressEntry[P]>
+  }
+
+
+
+
+  export type ProgressEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressEntryWhereInput
+    orderBy?: ProgressEntryOrderByWithAggregationInput | ProgressEntryOrderByWithAggregationInput[]
+    by: ProgressEntryScalarFieldEnum[] | ProgressEntryScalarFieldEnum
+    having?: ProgressEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProgressEntryCountAggregateInputType | true
+    _min?: ProgressEntryMinAggregateInputType
+    _max?: ProgressEntryMaxAggregateInputType
+  }
+
+  export type ProgressEntryGroupByOutputType = {
+    id: string
+    date: Date
+    title: string
+    description: string | null
+    postedAt: Date
+    createdAt: Date
+    updatedAt: Date
+    userId: string
+    _count: ProgressEntryCountAggregateOutputType | null
+    _min: ProgressEntryMinAggregateOutputType | null
+    _max: ProgressEntryMaxAggregateOutputType | null
+  }
+
+  type GetProgressEntryGroupByPayload<T extends ProgressEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProgressEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProgressEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProgressEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], ProgressEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProgressEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    date?: boolean
+    title?: boolean
+    description?: boolean
+    postedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    images?: boolean | ProgressEntry$imagesArgs<ExtArgs>
+    calendarEvent?: boolean | ProgressEntry$calendarEventArgs<ExtArgs>
+    _count?: boolean | ProgressEntryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressEntry"]>
+
+
+
+  export type ProgressEntrySelectScalar = {
+    id?: boolean
+    date?: boolean
+    title?: boolean
+    description?: boolean
+    postedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+  }
+
+  export type ProgressEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "title" | "description" | "postedAt" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["progressEntry"]>
+  export type ProgressEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    images?: boolean | ProgressEntry$imagesArgs<ExtArgs>
+    calendarEvent?: boolean | ProgressEntry$calendarEventArgs<ExtArgs>
+    _count?: boolean | ProgressEntryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ProgressEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProgressEntry"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      images: Prisma.$ProgressImagePayload<ExtArgs>[]
+      calendarEvent: Prisma.$CalendarEventPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      date: Date
+      title: string
+      description: string | null
+      postedAt: Date
+      createdAt: Date
+      updatedAt: Date
+      userId: string
+    }, ExtArgs["result"]["progressEntry"]>
+    composites: {}
+  }
+
+  type ProgressEntryGetPayload<S extends boolean | null | undefined | ProgressEntryDefaultArgs> = $Result.GetResult<Prisma.$ProgressEntryPayload, S>
+
+  type ProgressEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProgressEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProgressEntryCountAggregateInputType | true
+    }
+
+  export interface ProgressEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProgressEntry'], meta: { name: 'ProgressEntry' } }
+    /**
+     * Find zero or one ProgressEntry that matches the filter.
+     * @param {ProgressEntryFindUniqueArgs} args - Arguments to find a ProgressEntry
+     * @example
+     * // Get one ProgressEntry
+     * const progressEntry = await prisma.progressEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProgressEntryFindUniqueArgs>(args: SelectSubset<T, ProgressEntryFindUniqueArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProgressEntry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProgressEntryFindUniqueOrThrowArgs} args - Arguments to find a ProgressEntry
+     * @example
+     * // Get one ProgressEntry
+     * const progressEntry = await prisma.progressEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProgressEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, ProgressEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressEntryFindFirstArgs} args - Arguments to find a ProgressEntry
+     * @example
+     * // Get one ProgressEntry
+     * const progressEntry = await prisma.progressEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProgressEntryFindFirstArgs>(args?: SelectSubset<T, ProgressEntryFindFirstArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressEntryFindFirstOrThrowArgs} args - Arguments to find a ProgressEntry
+     * @example
+     * // Get one ProgressEntry
+     * const progressEntry = await prisma.progressEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProgressEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, ProgressEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProgressEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProgressEntries
+     * const progressEntries = await prisma.progressEntry.findMany()
+     * 
+     * // Get first 10 ProgressEntries
+     * const progressEntries = await prisma.progressEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const progressEntryWithIdOnly = await prisma.progressEntry.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProgressEntryFindManyArgs>(args?: SelectSubset<T, ProgressEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProgressEntry.
+     * @param {ProgressEntryCreateArgs} args - Arguments to create a ProgressEntry.
+     * @example
+     * // Create one ProgressEntry
+     * const ProgressEntry = await prisma.progressEntry.create({
+     *   data: {
+     *     // ... data to create a ProgressEntry
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProgressEntryCreateArgs>(args: SelectSubset<T, ProgressEntryCreateArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProgressEntries.
+     * @param {ProgressEntryCreateManyArgs} args - Arguments to create many ProgressEntries.
+     * @example
+     * // Create many ProgressEntries
+     * const progressEntry = await prisma.progressEntry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProgressEntryCreateManyArgs>(args?: SelectSubset<T, ProgressEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProgressEntry.
+     * @param {ProgressEntryDeleteArgs} args - Arguments to delete one ProgressEntry.
+     * @example
+     * // Delete one ProgressEntry
+     * const ProgressEntry = await prisma.progressEntry.delete({
+     *   where: {
+     *     // ... filter to delete one ProgressEntry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProgressEntryDeleteArgs>(args: SelectSubset<T, ProgressEntryDeleteArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProgressEntry.
+     * @param {ProgressEntryUpdateArgs} args - Arguments to update one ProgressEntry.
+     * @example
+     * // Update one ProgressEntry
+     * const progressEntry = await prisma.progressEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProgressEntryUpdateArgs>(args: SelectSubset<T, ProgressEntryUpdateArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProgressEntries.
+     * @param {ProgressEntryDeleteManyArgs} args - Arguments to filter ProgressEntries to delete.
+     * @example
+     * // Delete a few ProgressEntries
+     * const { count } = await prisma.progressEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProgressEntryDeleteManyArgs>(args?: SelectSubset<T, ProgressEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgressEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProgressEntries
+     * const progressEntry = await prisma.progressEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProgressEntryUpdateManyArgs>(args: SelectSubset<T, ProgressEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProgressEntry.
+     * @param {ProgressEntryUpsertArgs} args - Arguments to update or create a ProgressEntry.
+     * @example
+     * // Update or create a ProgressEntry
+     * const progressEntry = await prisma.progressEntry.upsert({
+     *   create: {
+     *     // ... data to create a ProgressEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProgressEntry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProgressEntryUpsertArgs>(args: SelectSubset<T, ProgressEntryUpsertArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProgressEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressEntryCountArgs} args - Arguments to filter ProgressEntries to count.
+     * @example
+     * // Count the number of ProgressEntries
+     * const count = await prisma.progressEntry.count({
+     *   where: {
+     *     // ... the filter for the ProgressEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProgressEntryCountArgs>(
+      args?: Subset<T, ProgressEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProgressEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProgressEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProgressEntryAggregateArgs>(args: Subset<T, ProgressEntryAggregateArgs>): Prisma.PrismaPromise<GetProgressEntryAggregateType<T>>
+
+    /**
+     * Group by ProgressEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProgressEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProgressEntryGroupByArgs['orderBy'] }
+        : { orderBy?: ProgressEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProgressEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgressEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProgressEntry model
+   */
+  readonly fields: ProgressEntryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProgressEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProgressEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    images<T extends ProgressEntry$imagesArgs<ExtArgs> = {}>(args?: Subset<T, ProgressEntry$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    calendarEvent<T extends ProgressEntry$calendarEventArgs<ExtArgs> = {}>(args?: Subset<T, ProgressEntry$calendarEventArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProgressEntry model
+   */
+  interface ProgressEntryFieldRefs {
+    readonly id: FieldRef<"ProgressEntry", 'String'>
+    readonly date: FieldRef<"ProgressEntry", 'DateTime'>
+    readonly title: FieldRef<"ProgressEntry", 'String'>
+    readonly description: FieldRef<"ProgressEntry", 'String'>
+    readonly postedAt: FieldRef<"ProgressEntry", 'DateTime'>
+    readonly createdAt: FieldRef<"ProgressEntry", 'DateTime'>
+    readonly updatedAt: FieldRef<"ProgressEntry", 'DateTime'>
+    readonly userId: FieldRef<"ProgressEntry", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProgressEntry findUnique
+   */
+  export type ProgressEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressEntry to fetch.
+     */
+    where: ProgressEntryWhereUniqueInput
+  }
+
+  /**
+   * ProgressEntry findUniqueOrThrow
+   */
+  export type ProgressEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressEntry to fetch.
+     */
+    where: ProgressEntryWhereUniqueInput
+  }
+
+  /**
+   * ProgressEntry findFirst
+   */
+  export type ProgressEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressEntry to fetch.
+     */
+    where?: ProgressEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressEntries to fetch.
+     */
+    orderBy?: ProgressEntryOrderByWithRelationInput | ProgressEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressEntries.
+     */
+    cursor?: ProgressEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressEntries.
+     */
+    distinct?: ProgressEntryScalarFieldEnum | ProgressEntryScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressEntry findFirstOrThrow
+   */
+  export type ProgressEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressEntry to fetch.
+     */
+    where?: ProgressEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressEntries to fetch.
+     */
+    orderBy?: ProgressEntryOrderByWithRelationInput | ProgressEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressEntries.
+     */
+    cursor?: ProgressEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressEntries.
+     */
+    distinct?: ProgressEntryScalarFieldEnum | ProgressEntryScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressEntry findMany
+   */
+  export type ProgressEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressEntries to fetch.
+     */
+    where?: ProgressEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressEntries to fetch.
+     */
+    orderBy?: ProgressEntryOrderByWithRelationInput | ProgressEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProgressEntries.
+     */
+    cursor?: ProgressEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressEntries.
+     */
+    skip?: number
+    distinct?: ProgressEntryScalarFieldEnum | ProgressEntryScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressEntry create
+   */
+  export type ProgressEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProgressEntry.
+     */
+    data: XOR<ProgressEntryCreateInput, ProgressEntryUncheckedCreateInput>
+  }
+
+  /**
+   * ProgressEntry createMany
+   */
+  export type ProgressEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProgressEntries.
+     */
+    data: ProgressEntryCreateManyInput | ProgressEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProgressEntry update
+   */
+  export type ProgressEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProgressEntry.
+     */
+    data: XOR<ProgressEntryUpdateInput, ProgressEntryUncheckedUpdateInput>
+    /**
+     * Choose, which ProgressEntry to update.
+     */
+    where: ProgressEntryWhereUniqueInput
+  }
+
+  /**
+   * ProgressEntry updateMany
+   */
+  export type ProgressEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProgressEntries.
+     */
+    data: XOR<ProgressEntryUpdateManyMutationInput, ProgressEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgressEntries to update
+     */
+    where?: ProgressEntryWhereInput
+    /**
+     * Limit how many ProgressEntries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressEntry upsert
+   */
+  export type ProgressEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProgressEntry to update in case it exists.
+     */
+    where: ProgressEntryWhereUniqueInput
+    /**
+     * In case the ProgressEntry found by the `where` argument doesn't exist, create a new ProgressEntry with this data.
+     */
+    create: XOR<ProgressEntryCreateInput, ProgressEntryUncheckedCreateInput>
+    /**
+     * In case the ProgressEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProgressEntryUpdateInput, ProgressEntryUncheckedUpdateInput>
+  }
+
+  /**
+   * ProgressEntry delete
+   */
+  export type ProgressEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+    /**
+     * Filter which ProgressEntry to delete.
+     */
+    where: ProgressEntryWhereUniqueInput
+  }
+
+  /**
+   * ProgressEntry deleteMany
+   */
+  export type ProgressEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressEntries to delete
+     */
+    where?: ProgressEntryWhereInput
+    /**
+     * Limit how many ProgressEntries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressEntry.images
+   */
+  export type ProgressEntry$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    where?: ProgressImageWhereInput
+    orderBy?: ProgressImageOrderByWithRelationInput | ProgressImageOrderByWithRelationInput[]
+    cursor?: ProgressImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgressImageScalarFieldEnum | ProgressImageScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressEntry.calendarEvent
+   */
+  export type ProgressEntry$calendarEventArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    where?: CalendarEventWhereInput
+  }
+
+  /**
+   * ProgressEntry without action
+   */
+  export type ProgressEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressEntry
+     */
+    select?: ProgressEntrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressEntry
+     */
+    omit?: ProgressEntryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressEntryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProgressImage
+   */
+
+  export type AggregateProgressImage = {
+    _count: ProgressImageCountAggregateOutputType | null
+    _min: ProgressImageMinAggregateOutputType | null
+    _max: ProgressImageMaxAggregateOutputType | null
+  }
+
+  export type ProgressImageMinAggregateOutputType = {
+    id: string | null
+    url: string | null
+    progressEntryId: string | null
+    createdAt: Date | null
+  }
+
+  export type ProgressImageMaxAggregateOutputType = {
+    id: string | null
+    url: string | null
+    progressEntryId: string | null
+    createdAt: Date | null
+  }
+
+  export type ProgressImageCountAggregateOutputType = {
+    id: number
+    url: number
+    progressEntryId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ProgressImageMinAggregateInputType = {
+    id?: true
+    url?: true
+    progressEntryId?: true
+    createdAt?: true
+  }
+
+  export type ProgressImageMaxAggregateInputType = {
+    id?: true
+    url?: true
+    progressEntryId?: true
+    createdAt?: true
+  }
+
+  export type ProgressImageCountAggregateInputType = {
+    id?: true
+    url?: true
+    progressEntryId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ProgressImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressImage to aggregate.
+     */
+    where?: ProgressImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressImages to fetch.
+     */
+    orderBy?: ProgressImageOrderByWithRelationInput | ProgressImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProgressImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProgressImages
+    **/
+    _count?: true | ProgressImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProgressImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProgressImageMaxAggregateInputType
+  }
+
+  export type GetProgressImageAggregateType<T extends ProgressImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateProgressImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProgressImage[P]>
+      : GetScalarType<T[P], AggregateProgressImage[P]>
+  }
+
+
+
+
+  export type ProgressImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressImageWhereInput
+    orderBy?: ProgressImageOrderByWithAggregationInput | ProgressImageOrderByWithAggregationInput[]
+    by: ProgressImageScalarFieldEnum[] | ProgressImageScalarFieldEnum
+    having?: ProgressImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProgressImageCountAggregateInputType | true
+    _min?: ProgressImageMinAggregateInputType
+    _max?: ProgressImageMaxAggregateInputType
+  }
+
+  export type ProgressImageGroupByOutputType = {
+    id: string
+    url: string
+    progressEntryId: string
+    createdAt: Date
+    _count: ProgressImageCountAggregateOutputType | null
+    _min: ProgressImageMinAggregateOutputType | null
+    _max: ProgressImageMaxAggregateOutputType | null
+  }
+
+  type GetProgressImageGroupByPayload<T extends ProgressImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProgressImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProgressImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProgressImageGroupByOutputType[P]>
+            : GetScalarType<T[P], ProgressImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProgressImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    url?: boolean
+    progressEntryId?: boolean
+    createdAt?: boolean
+    progressEntry?: boolean | ProgressEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressImage"]>
+
+
+
+  export type ProgressImageSelectScalar = {
+    id?: boolean
+    url?: boolean
+    progressEntryId?: boolean
+    createdAt?: boolean
+  }
+
+  export type ProgressImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "progressEntryId" | "createdAt", ExtArgs["result"]["progressImage"]>
+  export type ProgressImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    progressEntry?: boolean | ProgressEntryDefaultArgs<ExtArgs>
+  }
+
+  export type $ProgressImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProgressImage"
+    objects: {
+      progressEntry: Prisma.$ProgressEntryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      url: string
+      progressEntryId: string
+      createdAt: Date
+    }, ExtArgs["result"]["progressImage"]>
+    composites: {}
+  }
+
+  type ProgressImageGetPayload<S extends boolean | null | undefined | ProgressImageDefaultArgs> = $Result.GetResult<Prisma.$ProgressImagePayload, S>
+
+  type ProgressImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProgressImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProgressImageCountAggregateInputType | true
+    }
+
+  export interface ProgressImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProgressImage'], meta: { name: 'ProgressImage' } }
+    /**
+     * Find zero or one ProgressImage that matches the filter.
+     * @param {ProgressImageFindUniqueArgs} args - Arguments to find a ProgressImage
+     * @example
+     * // Get one ProgressImage
+     * const progressImage = await prisma.progressImage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProgressImageFindUniqueArgs>(args: SelectSubset<T, ProgressImageFindUniqueArgs<ExtArgs>>): Prisma__ProgressImageClient<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProgressImage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProgressImageFindUniqueOrThrowArgs} args - Arguments to find a ProgressImage
+     * @example
+     * // Get one ProgressImage
+     * const progressImage = await prisma.progressImage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProgressImageFindUniqueOrThrowArgs>(args: SelectSubset<T, ProgressImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProgressImageClient<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressImage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressImageFindFirstArgs} args - Arguments to find a ProgressImage
+     * @example
+     * // Get one ProgressImage
+     * const progressImage = await prisma.progressImage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProgressImageFindFirstArgs>(args?: SelectSubset<T, ProgressImageFindFirstArgs<ExtArgs>>): Prisma__ProgressImageClient<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressImage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressImageFindFirstOrThrowArgs} args - Arguments to find a ProgressImage
+     * @example
+     * // Get one ProgressImage
+     * const progressImage = await prisma.progressImage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProgressImageFindFirstOrThrowArgs>(args?: SelectSubset<T, ProgressImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProgressImageClient<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProgressImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressImageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProgressImages
+     * const progressImages = await prisma.progressImage.findMany()
+     * 
+     * // Get first 10 ProgressImages
+     * const progressImages = await prisma.progressImage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const progressImageWithIdOnly = await prisma.progressImage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProgressImageFindManyArgs>(args?: SelectSubset<T, ProgressImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProgressImage.
+     * @param {ProgressImageCreateArgs} args - Arguments to create a ProgressImage.
+     * @example
+     * // Create one ProgressImage
+     * const ProgressImage = await prisma.progressImage.create({
+     *   data: {
+     *     // ... data to create a ProgressImage
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProgressImageCreateArgs>(args: SelectSubset<T, ProgressImageCreateArgs<ExtArgs>>): Prisma__ProgressImageClient<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProgressImages.
+     * @param {ProgressImageCreateManyArgs} args - Arguments to create many ProgressImages.
+     * @example
+     * // Create many ProgressImages
+     * const progressImage = await prisma.progressImage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProgressImageCreateManyArgs>(args?: SelectSubset<T, ProgressImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProgressImage.
+     * @param {ProgressImageDeleteArgs} args - Arguments to delete one ProgressImage.
+     * @example
+     * // Delete one ProgressImage
+     * const ProgressImage = await prisma.progressImage.delete({
+     *   where: {
+     *     // ... filter to delete one ProgressImage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProgressImageDeleteArgs>(args: SelectSubset<T, ProgressImageDeleteArgs<ExtArgs>>): Prisma__ProgressImageClient<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProgressImage.
+     * @param {ProgressImageUpdateArgs} args - Arguments to update one ProgressImage.
+     * @example
+     * // Update one ProgressImage
+     * const progressImage = await prisma.progressImage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProgressImageUpdateArgs>(args: SelectSubset<T, ProgressImageUpdateArgs<ExtArgs>>): Prisma__ProgressImageClient<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProgressImages.
+     * @param {ProgressImageDeleteManyArgs} args - Arguments to filter ProgressImages to delete.
+     * @example
+     * // Delete a few ProgressImages
+     * const { count } = await prisma.progressImage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProgressImageDeleteManyArgs>(args?: SelectSubset<T, ProgressImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgressImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProgressImages
+     * const progressImage = await prisma.progressImage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProgressImageUpdateManyArgs>(args: SelectSubset<T, ProgressImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProgressImage.
+     * @param {ProgressImageUpsertArgs} args - Arguments to update or create a ProgressImage.
+     * @example
+     * // Update or create a ProgressImage
+     * const progressImage = await prisma.progressImage.upsert({
+     *   create: {
+     *     // ... data to create a ProgressImage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProgressImage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProgressImageUpsertArgs>(args: SelectSubset<T, ProgressImageUpsertArgs<ExtArgs>>): Prisma__ProgressImageClient<$Result.GetResult<Prisma.$ProgressImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProgressImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressImageCountArgs} args - Arguments to filter ProgressImages to count.
+     * @example
+     * // Count the number of ProgressImages
+     * const count = await prisma.progressImage.count({
+     *   where: {
+     *     // ... the filter for the ProgressImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProgressImageCountArgs>(
+      args?: Subset<T, ProgressImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProgressImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProgressImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProgressImageAggregateArgs>(args: Subset<T, ProgressImageAggregateArgs>): Prisma.PrismaPromise<GetProgressImageAggregateType<T>>
+
+    /**
+     * Group by ProgressImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProgressImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProgressImageGroupByArgs['orderBy'] }
+        : { orderBy?: ProgressImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProgressImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgressImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProgressImage model
+   */
+  readonly fields: ProgressImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProgressImage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProgressImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    progressEntry<T extends ProgressEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProgressEntryDefaultArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProgressImage model
+   */
+  interface ProgressImageFieldRefs {
+    readonly id: FieldRef<"ProgressImage", 'String'>
+    readonly url: FieldRef<"ProgressImage", 'String'>
+    readonly progressEntryId: FieldRef<"ProgressImage", 'String'>
+    readonly createdAt: FieldRef<"ProgressImage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProgressImage findUnique
+   */
+  export type ProgressImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressImage to fetch.
+     */
+    where: ProgressImageWhereUniqueInput
+  }
+
+  /**
+   * ProgressImage findUniqueOrThrow
+   */
+  export type ProgressImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressImage to fetch.
+     */
+    where: ProgressImageWhereUniqueInput
+  }
+
+  /**
+   * ProgressImage findFirst
+   */
+  export type ProgressImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressImage to fetch.
+     */
+    where?: ProgressImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressImages to fetch.
+     */
+    orderBy?: ProgressImageOrderByWithRelationInput | ProgressImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressImages.
+     */
+    cursor?: ProgressImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressImages.
+     */
+    distinct?: ProgressImageScalarFieldEnum | ProgressImageScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressImage findFirstOrThrow
+   */
+  export type ProgressImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressImage to fetch.
+     */
+    where?: ProgressImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressImages to fetch.
+     */
+    orderBy?: ProgressImageOrderByWithRelationInput | ProgressImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressImages.
+     */
+    cursor?: ProgressImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressImages.
+     */
+    distinct?: ProgressImageScalarFieldEnum | ProgressImageScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressImage findMany
+   */
+  export type ProgressImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressImages to fetch.
+     */
+    where?: ProgressImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressImages to fetch.
+     */
+    orderBy?: ProgressImageOrderByWithRelationInput | ProgressImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProgressImages.
+     */
+    cursor?: ProgressImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressImages.
+     */
+    skip?: number
+    distinct?: ProgressImageScalarFieldEnum | ProgressImageScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressImage create
+   */
+  export type ProgressImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProgressImage.
+     */
+    data: XOR<ProgressImageCreateInput, ProgressImageUncheckedCreateInput>
+  }
+
+  /**
+   * ProgressImage createMany
+   */
+  export type ProgressImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProgressImages.
+     */
+    data: ProgressImageCreateManyInput | ProgressImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProgressImage update
+   */
+  export type ProgressImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProgressImage.
+     */
+    data: XOR<ProgressImageUpdateInput, ProgressImageUncheckedUpdateInput>
+    /**
+     * Choose, which ProgressImage to update.
+     */
+    where: ProgressImageWhereUniqueInput
+  }
+
+  /**
+   * ProgressImage updateMany
+   */
+  export type ProgressImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProgressImages.
+     */
+    data: XOR<ProgressImageUpdateManyMutationInput, ProgressImageUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgressImages to update
+     */
+    where?: ProgressImageWhereInput
+    /**
+     * Limit how many ProgressImages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressImage upsert
+   */
+  export type ProgressImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProgressImage to update in case it exists.
+     */
+    where: ProgressImageWhereUniqueInput
+    /**
+     * In case the ProgressImage found by the `where` argument doesn't exist, create a new ProgressImage with this data.
+     */
+    create: XOR<ProgressImageCreateInput, ProgressImageUncheckedCreateInput>
+    /**
+     * In case the ProgressImage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProgressImageUpdateInput, ProgressImageUncheckedUpdateInput>
+  }
+
+  /**
+   * ProgressImage delete
+   */
+  export type ProgressImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+    /**
+     * Filter which ProgressImage to delete.
+     */
+    where: ProgressImageWhereUniqueInput
+  }
+
+  /**
+   * ProgressImage deleteMany
+   */
+  export type ProgressImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressImages to delete
+     */
+    where?: ProgressImageWhereInput
+    /**
+     * Limit how many ProgressImages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressImage without action
+   */
+  export type ProgressImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressImage
+     */
+    select?: ProgressImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressImage
+     */
+    omit?: ProgressImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressImageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserStats
+   */
+
+  export type AggregateUserStats = {
+    _count: UserStatsCountAggregateOutputType | null
+    _avg: UserStatsAvgAggregateOutputType | null
+    _sum: UserStatsSumAggregateOutputType | null
+    _min: UserStatsMinAggregateOutputType | null
+    _max: UserStatsMaxAggregateOutputType | null
+  }
+
+  export type UserStatsAvgAggregateOutputType = {
+    totalDays: number | null
+    currentStreak: number | null
+    longestStreak: number | null
+  }
+
+  export type UserStatsSumAggregateOutputType = {
+    totalDays: number | null
+    currentStreak: number | null
+    longestStreak: number | null
+  }
+
+  export type UserStatsMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    totalDays: number | null
+    currentStreak: number | null
+    longestStreak: number | null
+    lastPostedDate: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserStatsMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    totalDays: number | null
+    currentStreak: number | null
+    longestStreak: number | null
+    lastPostedDate: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserStatsCountAggregateOutputType = {
+    id: number
+    userId: number
+    totalDays: number
+    currentStreak: number
+    longestStreak: number
+    lastPostedDate: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserStatsAvgAggregateInputType = {
+    totalDays?: true
+    currentStreak?: true
+    longestStreak?: true
+  }
+
+  export type UserStatsSumAggregateInputType = {
+    totalDays?: true
+    currentStreak?: true
+    longestStreak?: true
+  }
+
+  export type UserStatsMinAggregateInputType = {
+    id?: true
+    userId?: true
+    totalDays?: true
+    currentStreak?: true
+    longestStreak?: true
+    lastPostedDate?: true
+    updatedAt?: true
+  }
+
+  export type UserStatsMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    totalDays?: true
+    currentStreak?: true
+    longestStreak?: true
+    lastPostedDate?: true
+    updatedAt?: true
+  }
+
+  export type UserStatsCountAggregateInputType = {
+    id?: true
+    userId?: true
+    totalDays?: true
+    currentStreak?: true
+    longestStreak?: true
+    lastPostedDate?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserStatsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserStats to aggregate.
+     */
+    where?: UserStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserStats to fetch.
+     */
+    orderBy?: UserStatsOrderByWithRelationInput | UserStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserStats
+    **/
+    _count?: true | UserStatsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserStatsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserStatsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserStatsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserStatsMaxAggregateInputType
+  }
+
+  export type GetUserStatsAggregateType<T extends UserStatsAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserStats]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserStats[P]>
+      : GetScalarType<T[P], AggregateUserStats[P]>
+  }
+
+
+
+
+  export type UserStatsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserStatsWhereInput
+    orderBy?: UserStatsOrderByWithAggregationInput | UserStatsOrderByWithAggregationInput[]
+    by: UserStatsScalarFieldEnum[] | UserStatsScalarFieldEnum
+    having?: UserStatsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserStatsCountAggregateInputType | true
+    _avg?: UserStatsAvgAggregateInputType
+    _sum?: UserStatsSumAggregateInputType
+    _min?: UserStatsMinAggregateInputType
+    _max?: UserStatsMaxAggregateInputType
+  }
+
+  export type UserStatsGroupByOutputType = {
+    id: string
+    userId: string
+    totalDays: number
+    currentStreak: number
+    longestStreak: number
+    lastPostedDate: Date | null
+    updatedAt: Date
+    _count: UserStatsCountAggregateOutputType | null
+    _avg: UserStatsAvgAggregateOutputType | null
+    _sum: UserStatsSumAggregateOutputType | null
+    _min: UserStatsMinAggregateOutputType | null
+    _max: UserStatsMaxAggregateOutputType | null
+  }
+
+  type GetUserStatsGroupByPayload<T extends UserStatsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserStatsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserStatsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserStatsGroupByOutputType[P]>
+            : GetScalarType<T[P], UserStatsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserStatsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    totalDays?: boolean
+    currentStreak?: boolean
+    longestStreak?: boolean
+    lastPostedDate?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userStats"]>
+
+
+
+  export type UserStatsSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    totalDays?: boolean
+    currentStreak?: boolean
+    longestStreak?: boolean
+    lastPostedDate?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserStatsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "totalDays" | "currentStreak" | "longestStreak" | "lastPostedDate" | "updatedAt", ExtArgs["result"]["userStats"]>
+  export type UserStatsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserStatsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserStats"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      totalDays: number
+      currentStreak: number
+      longestStreak: number
+      lastPostedDate: Date | null
+      updatedAt: Date
+    }, ExtArgs["result"]["userStats"]>
+    composites: {}
+  }
+
+  type UserStatsGetPayload<S extends boolean | null | undefined | UserStatsDefaultArgs> = $Result.GetResult<Prisma.$UserStatsPayload, S>
+
+  type UserStatsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserStatsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserStatsCountAggregateInputType | true
+    }
+
+  export interface UserStatsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserStats'], meta: { name: 'UserStats' } }
+    /**
+     * Find zero or one UserStats that matches the filter.
+     * @param {UserStatsFindUniqueArgs} args - Arguments to find a UserStats
+     * @example
+     * // Get one UserStats
+     * const userStats = await prisma.userStats.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserStatsFindUniqueArgs>(args: SelectSubset<T, UserStatsFindUniqueArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserStats that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserStatsFindUniqueOrThrowArgs} args - Arguments to find a UserStats
+     * @example
+     * // Get one UserStats
+     * const userStats = await prisma.userStats.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserStatsFindUniqueOrThrowArgs>(args: SelectSubset<T, UserStatsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserStats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsFindFirstArgs} args - Arguments to find a UserStats
+     * @example
+     * // Get one UserStats
+     * const userStats = await prisma.userStats.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserStatsFindFirstArgs>(args?: SelectSubset<T, UserStatsFindFirstArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserStats that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsFindFirstOrThrowArgs} args - Arguments to find a UserStats
+     * @example
+     * // Get one UserStats
+     * const userStats = await prisma.userStats.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserStatsFindFirstOrThrowArgs>(args?: SelectSubset<T, UserStatsFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserStats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserStats
+     * const userStats = await prisma.userStats.findMany()
+     * 
+     * // Get first 10 UserStats
+     * const userStats = await prisma.userStats.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userStatsWithIdOnly = await prisma.userStats.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserStatsFindManyArgs>(args?: SelectSubset<T, UserStatsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserStats.
+     * @param {UserStatsCreateArgs} args - Arguments to create a UserStats.
+     * @example
+     * // Create one UserStats
+     * const UserStats = await prisma.userStats.create({
+     *   data: {
+     *     // ... data to create a UserStats
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserStatsCreateArgs>(args: SelectSubset<T, UserStatsCreateArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserStats.
+     * @param {UserStatsCreateManyArgs} args - Arguments to create many UserStats.
+     * @example
+     * // Create many UserStats
+     * const userStats = await prisma.userStats.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserStatsCreateManyArgs>(args?: SelectSubset<T, UserStatsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a UserStats.
+     * @param {UserStatsDeleteArgs} args - Arguments to delete one UserStats.
+     * @example
+     * // Delete one UserStats
+     * const UserStats = await prisma.userStats.delete({
+     *   where: {
+     *     // ... filter to delete one UserStats
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserStatsDeleteArgs>(args: SelectSubset<T, UserStatsDeleteArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserStats.
+     * @param {UserStatsUpdateArgs} args - Arguments to update one UserStats.
+     * @example
+     * // Update one UserStats
+     * const userStats = await prisma.userStats.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserStatsUpdateArgs>(args: SelectSubset<T, UserStatsUpdateArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserStats.
+     * @param {UserStatsDeleteManyArgs} args - Arguments to filter UserStats to delete.
+     * @example
+     * // Delete a few UserStats
+     * const { count } = await prisma.userStats.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserStatsDeleteManyArgs>(args?: SelectSubset<T, UserStatsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserStats
+     * const userStats = await prisma.userStats.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserStatsUpdateManyArgs>(args: SelectSubset<T, UserStatsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UserStats.
+     * @param {UserStatsUpsertArgs} args - Arguments to update or create a UserStats.
+     * @example
+     * // Update or create a UserStats
+     * const userStats = await prisma.userStats.upsert({
+     *   create: {
+     *     // ... data to create a UserStats
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserStats we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserStatsUpsertArgs>(args: SelectSubset<T, UserStatsUpsertArgs<ExtArgs>>): Prisma__UserStatsClient<$Result.GetResult<Prisma.$UserStatsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsCountArgs} args - Arguments to filter UserStats to count.
+     * @example
+     * // Count the number of UserStats
+     * const count = await prisma.userStats.count({
+     *   where: {
+     *     // ... the filter for the UserStats we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserStatsCountArgs>(
+      args?: Subset<T, UserStatsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserStatsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserStatsAggregateArgs>(args: Subset<T, UserStatsAggregateArgs>): Prisma.PrismaPromise<GetUserStatsAggregateType<T>>
+
+    /**
+     * Group by UserStats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserStatsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserStatsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserStatsGroupByArgs['orderBy'] }
+        : { orderBy?: UserStatsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserStatsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserStatsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserStats model
+   */
+  readonly fields: UserStatsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserStats.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserStatsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserStats model
+   */
+  interface UserStatsFieldRefs {
+    readonly id: FieldRef<"UserStats", 'String'>
+    readonly userId: FieldRef<"UserStats", 'String'>
+    readonly totalDays: FieldRef<"UserStats", 'Int'>
+    readonly currentStreak: FieldRef<"UserStats", 'Int'>
+    readonly longestStreak: FieldRef<"UserStats", 'Int'>
+    readonly lastPostedDate: FieldRef<"UserStats", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserStats", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserStats findUnique
+   */
+  export type UserStatsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where: UserStatsWhereUniqueInput
+  }
+
+  /**
+   * UserStats findUniqueOrThrow
+   */
+  export type UserStatsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where: UserStatsWhereUniqueInput
+  }
+
+  /**
+   * UserStats findFirst
+   */
+  export type UserStatsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where?: UserStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserStats to fetch.
+     */
+    orderBy?: UserStatsOrderByWithRelationInput | UserStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserStats.
+     */
+    cursor?: UserStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserStats.
+     */
+    distinct?: UserStatsScalarFieldEnum | UserStatsScalarFieldEnum[]
+  }
+
+  /**
+   * UserStats findFirstOrThrow
+   */
+  export type UserStatsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where?: UserStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserStats to fetch.
+     */
+    orderBy?: UserStatsOrderByWithRelationInput | UserStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserStats.
+     */
+    cursor?: UserStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserStats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserStats.
+     */
+    distinct?: UserStatsScalarFieldEnum | UserStatsScalarFieldEnum[]
+  }
+
+  /**
+   * UserStats findMany
+   */
+  export type UserStatsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter, which UserStats to fetch.
+     */
+    where?: UserStatsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserStats to fetch.
+     */
+    orderBy?: UserStatsOrderByWithRelationInput | UserStatsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserStats.
+     */
+    cursor?: UserStatsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserStats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserStats.
+     */
+    skip?: number
+    distinct?: UserStatsScalarFieldEnum | UserStatsScalarFieldEnum[]
+  }
+
+  /**
+   * UserStats create
+   */
+  export type UserStatsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserStats.
+     */
+    data: XOR<UserStatsCreateInput, UserStatsUncheckedCreateInput>
+  }
+
+  /**
+   * UserStats createMany
+   */
+  export type UserStatsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserStats.
+     */
+    data: UserStatsCreateManyInput | UserStatsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserStats update
+   */
+  export type UserStatsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserStats.
+     */
+    data: XOR<UserStatsUpdateInput, UserStatsUncheckedUpdateInput>
+    /**
+     * Choose, which UserStats to update.
+     */
+    where: UserStatsWhereUniqueInput
+  }
+
+  /**
+   * UserStats updateMany
+   */
+  export type UserStatsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserStats.
+     */
+    data: XOR<UserStatsUpdateManyMutationInput, UserStatsUncheckedUpdateManyInput>
+    /**
+     * Filter which UserStats to update
+     */
+    where?: UserStatsWhereInput
+    /**
+     * Limit how many UserStats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserStats upsert
+   */
+  export type UserStatsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserStats to update in case it exists.
+     */
+    where: UserStatsWhereUniqueInput
+    /**
+     * In case the UserStats found by the `where` argument doesn't exist, create a new UserStats with this data.
+     */
+    create: XOR<UserStatsCreateInput, UserStatsUncheckedCreateInput>
+    /**
+     * In case the UserStats was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserStatsUpdateInput, UserStatsUncheckedUpdateInput>
+  }
+
+  /**
+   * UserStats delete
+   */
+  export type UserStatsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+    /**
+     * Filter which UserStats to delete.
+     */
+    where: UserStatsWhereUniqueInput
+  }
+
+  /**
+   * UserStats deleteMany
+   */
+  export type UserStatsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserStats to delete
+     */
+    where?: UserStatsWhereInput
+    /**
+     * Limit how many UserStats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserStats without action
+   */
+  export type UserStatsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserStats
+     */
+    select?: UserStatsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserStats
+     */
+    omit?: UserStatsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserStatsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CalendarEvent
+   */
+
+  export type AggregateCalendarEvent = {
+    _count: CalendarEventCountAggregateOutputType | null
+    _min: CalendarEventMinAggregateOutputType | null
+    _max: CalendarEventMaxAggregateOutputType | null
+  }
+
+  export type CalendarEventMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    date: Date | null
+    imageUrl: string | null
+    category: string | null
+    progressEntryId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CalendarEventMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    date: Date | null
+    imageUrl: string | null
+    category: string | null
+    progressEntryId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CalendarEventCountAggregateOutputType = {
+    id: number
+    title: number
+    date: number
+    imageUrl: number
+    category: number
+    progressEntryId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CalendarEventMinAggregateInputType = {
+    id?: true
+    title?: true
+    date?: true
+    imageUrl?: true
+    category?: true
+    progressEntryId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CalendarEventMaxAggregateInputType = {
+    id?: true
+    title?: true
+    date?: true
+    imageUrl?: true
+    category?: true
+    progressEntryId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CalendarEventCountAggregateInputType = {
+    id?: true
+    title?: true
+    date?: true
+    imageUrl?: true
+    category?: true
+    progressEntryId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CalendarEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CalendarEvent to aggregate.
+     */
+    where?: CalendarEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CalendarEvents to fetch.
+     */
+    orderBy?: CalendarEventOrderByWithRelationInput | CalendarEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CalendarEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CalendarEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CalendarEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CalendarEvents
+    **/
+    _count?: true | CalendarEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CalendarEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CalendarEventMaxAggregateInputType
+  }
+
+  export type GetCalendarEventAggregateType<T extends CalendarEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateCalendarEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCalendarEvent[P]>
+      : GetScalarType<T[P], AggregateCalendarEvent[P]>
+  }
+
+
+
+
+  export type CalendarEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CalendarEventWhereInput
+    orderBy?: CalendarEventOrderByWithAggregationInput | CalendarEventOrderByWithAggregationInput[]
+    by: CalendarEventScalarFieldEnum[] | CalendarEventScalarFieldEnum
+    having?: CalendarEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CalendarEventCountAggregateInputType | true
+    _min?: CalendarEventMinAggregateInputType
+    _max?: CalendarEventMaxAggregateInputType
+  }
+
+  export type CalendarEventGroupByOutputType = {
+    id: string
+    title: string
+    date: Date
+    imageUrl: string | null
+    category: string | null
+    progressEntryId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: CalendarEventCountAggregateOutputType | null
+    _min: CalendarEventMinAggregateOutputType | null
+    _max: CalendarEventMaxAggregateOutputType | null
+  }
+
+  type GetCalendarEventGroupByPayload<T extends CalendarEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CalendarEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CalendarEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CalendarEventGroupByOutputType[P]>
+            : GetScalarType<T[P], CalendarEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CalendarEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    date?: boolean
+    imageUrl?: boolean
+    category?: boolean
+    progressEntryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    progressEntry?: boolean | ProgressEntryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["calendarEvent"]>
+
+
+
+  export type CalendarEventSelectScalar = {
+    id?: boolean
+    title?: boolean
+    date?: boolean
+    imageUrl?: boolean
+    category?: boolean
+    progressEntryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CalendarEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "date" | "imageUrl" | "category" | "progressEntryId" | "createdAt" | "updatedAt", ExtArgs["result"]["calendarEvent"]>
+  export type CalendarEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    progressEntry?: boolean | ProgressEntryDefaultArgs<ExtArgs>
+  }
+
+  export type $CalendarEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CalendarEvent"
+    objects: {
+      progressEntry: Prisma.$ProgressEntryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      date: Date
+      imageUrl: string | null
+      category: string | null
+      progressEntryId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["calendarEvent"]>
+    composites: {}
+  }
+
+  type CalendarEventGetPayload<S extends boolean | null | undefined | CalendarEventDefaultArgs> = $Result.GetResult<Prisma.$CalendarEventPayload, S>
+
+  type CalendarEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CalendarEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CalendarEventCountAggregateInputType | true
+    }
+
+  export interface CalendarEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CalendarEvent'], meta: { name: 'CalendarEvent' } }
+    /**
+     * Find zero or one CalendarEvent that matches the filter.
+     * @param {CalendarEventFindUniqueArgs} args - Arguments to find a CalendarEvent
+     * @example
+     * // Get one CalendarEvent
+     * const calendarEvent = await prisma.calendarEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CalendarEventFindUniqueArgs>(args: SelectSubset<T, CalendarEventFindUniqueArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CalendarEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CalendarEventFindUniqueOrThrowArgs} args - Arguments to find a CalendarEvent
+     * @example
+     * // Get one CalendarEvent
+     * const calendarEvent = await prisma.calendarEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CalendarEventFindUniqueOrThrowArgs>(args: SelectSubset<T, CalendarEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CalendarEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CalendarEventFindFirstArgs} args - Arguments to find a CalendarEvent
+     * @example
+     * // Get one CalendarEvent
+     * const calendarEvent = await prisma.calendarEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CalendarEventFindFirstArgs>(args?: SelectSubset<T, CalendarEventFindFirstArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CalendarEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CalendarEventFindFirstOrThrowArgs} args - Arguments to find a CalendarEvent
+     * @example
+     * // Get one CalendarEvent
+     * const calendarEvent = await prisma.calendarEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CalendarEventFindFirstOrThrowArgs>(args?: SelectSubset<T, CalendarEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CalendarEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CalendarEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CalendarEvents
+     * const calendarEvents = await prisma.calendarEvent.findMany()
+     * 
+     * // Get first 10 CalendarEvents
+     * const calendarEvents = await prisma.calendarEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const calendarEventWithIdOnly = await prisma.calendarEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CalendarEventFindManyArgs>(args?: SelectSubset<T, CalendarEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CalendarEvent.
+     * @param {CalendarEventCreateArgs} args - Arguments to create a CalendarEvent.
+     * @example
+     * // Create one CalendarEvent
+     * const CalendarEvent = await prisma.calendarEvent.create({
+     *   data: {
+     *     // ... data to create a CalendarEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends CalendarEventCreateArgs>(args: SelectSubset<T, CalendarEventCreateArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CalendarEvents.
+     * @param {CalendarEventCreateManyArgs} args - Arguments to create many CalendarEvents.
+     * @example
+     * // Create many CalendarEvents
+     * const calendarEvent = await prisma.calendarEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CalendarEventCreateManyArgs>(args?: SelectSubset<T, CalendarEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CalendarEvent.
+     * @param {CalendarEventDeleteArgs} args - Arguments to delete one CalendarEvent.
+     * @example
+     * // Delete one CalendarEvent
+     * const CalendarEvent = await prisma.calendarEvent.delete({
+     *   where: {
+     *     // ... filter to delete one CalendarEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CalendarEventDeleteArgs>(args: SelectSubset<T, CalendarEventDeleteArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CalendarEvent.
+     * @param {CalendarEventUpdateArgs} args - Arguments to update one CalendarEvent.
+     * @example
+     * // Update one CalendarEvent
+     * const calendarEvent = await prisma.calendarEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CalendarEventUpdateArgs>(args: SelectSubset<T, CalendarEventUpdateArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CalendarEvents.
+     * @param {CalendarEventDeleteManyArgs} args - Arguments to filter CalendarEvents to delete.
+     * @example
+     * // Delete a few CalendarEvents
+     * const { count } = await prisma.calendarEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CalendarEventDeleteManyArgs>(args?: SelectSubset<T, CalendarEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CalendarEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CalendarEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CalendarEvents
+     * const calendarEvent = await prisma.calendarEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CalendarEventUpdateManyArgs>(args: SelectSubset<T, CalendarEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CalendarEvent.
+     * @param {CalendarEventUpsertArgs} args - Arguments to update or create a CalendarEvent.
+     * @example
+     * // Update or create a CalendarEvent
+     * const calendarEvent = await prisma.calendarEvent.upsert({
+     *   create: {
+     *     // ... data to create a CalendarEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CalendarEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CalendarEventUpsertArgs>(args: SelectSubset<T, CalendarEventUpsertArgs<ExtArgs>>): Prisma__CalendarEventClient<$Result.GetResult<Prisma.$CalendarEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CalendarEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CalendarEventCountArgs} args - Arguments to filter CalendarEvents to count.
+     * @example
+     * // Count the number of CalendarEvents
+     * const count = await prisma.calendarEvent.count({
+     *   where: {
+     *     // ... the filter for the CalendarEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends CalendarEventCountArgs>(
+      args?: Subset<T, CalendarEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CalendarEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CalendarEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CalendarEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CalendarEventAggregateArgs>(args: Subset<T, CalendarEventAggregateArgs>): Prisma.PrismaPromise<GetCalendarEventAggregateType<T>>
+
+    /**
+     * Group by CalendarEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CalendarEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CalendarEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CalendarEventGroupByArgs['orderBy'] }
+        : { orderBy?: CalendarEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CalendarEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCalendarEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CalendarEvent model
+   */
+  readonly fields: CalendarEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CalendarEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CalendarEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    progressEntry<T extends ProgressEntryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProgressEntryDefaultArgs<ExtArgs>>): Prisma__ProgressEntryClient<$Result.GetResult<Prisma.$ProgressEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CalendarEvent model
+   */
+  interface CalendarEventFieldRefs {
+    readonly id: FieldRef<"CalendarEvent", 'String'>
+    readonly title: FieldRef<"CalendarEvent", 'String'>
+    readonly date: FieldRef<"CalendarEvent", 'DateTime'>
+    readonly imageUrl: FieldRef<"CalendarEvent", 'String'>
+    readonly category: FieldRef<"CalendarEvent", 'String'>
+    readonly progressEntryId: FieldRef<"CalendarEvent", 'String'>
+    readonly createdAt: FieldRef<"CalendarEvent", 'DateTime'>
+    readonly updatedAt: FieldRef<"CalendarEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CalendarEvent findUnique
+   */
+  export type CalendarEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * Filter, which CalendarEvent to fetch.
+     */
+    where: CalendarEventWhereUniqueInput
+  }
+
+  /**
+   * CalendarEvent findUniqueOrThrow
+   */
+  export type CalendarEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * Filter, which CalendarEvent to fetch.
+     */
+    where: CalendarEventWhereUniqueInput
+  }
+
+  /**
+   * CalendarEvent findFirst
+   */
+  export type CalendarEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * Filter, which CalendarEvent to fetch.
+     */
+    where?: CalendarEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CalendarEvents to fetch.
+     */
+    orderBy?: CalendarEventOrderByWithRelationInput | CalendarEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CalendarEvents.
+     */
+    cursor?: CalendarEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CalendarEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CalendarEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CalendarEvents.
+     */
+    distinct?: CalendarEventScalarFieldEnum | CalendarEventScalarFieldEnum[]
+  }
+
+  /**
+   * CalendarEvent findFirstOrThrow
+   */
+  export type CalendarEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * Filter, which CalendarEvent to fetch.
+     */
+    where?: CalendarEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CalendarEvents to fetch.
+     */
+    orderBy?: CalendarEventOrderByWithRelationInput | CalendarEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CalendarEvents.
+     */
+    cursor?: CalendarEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CalendarEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CalendarEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CalendarEvents.
+     */
+    distinct?: CalendarEventScalarFieldEnum | CalendarEventScalarFieldEnum[]
+  }
+
+  /**
+   * CalendarEvent findMany
+   */
+  export type CalendarEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * Filter, which CalendarEvents to fetch.
+     */
+    where?: CalendarEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CalendarEvents to fetch.
+     */
+    orderBy?: CalendarEventOrderByWithRelationInput | CalendarEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CalendarEvents.
+     */
+    cursor?: CalendarEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CalendarEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CalendarEvents.
+     */
+    skip?: number
+    distinct?: CalendarEventScalarFieldEnum | CalendarEventScalarFieldEnum[]
+  }
+
+  /**
+   * CalendarEvent create
+   */
+  export type CalendarEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CalendarEvent.
+     */
+    data: XOR<CalendarEventCreateInput, CalendarEventUncheckedCreateInput>
+  }
+
+  /**
+   * CalendarEvent createMany
+   */
+  export type CalendarEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CalendarEvents.
+     */
+    data: CalendarEventCreateManyInput | CalendarEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CalendarEvent update
+   */
+  export type CalendarEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CalendarEvent.
+     */
+    data: XOR<CalendarEventUpdateInput, CalendarEventUncheckedUpdateInput>
+    /**
+     * Choose, which CalendarEvent to update.
+     */
+    where: CalendarEventWhereUniqueInput
+  }
+
+  /**
+   * CalendarEvent updateMany
+   */
+  export type CalendarEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CalendarEvents.
+     */
+    data: XOR<CalendarEventUpdateManyMutationInput, CalendarEventUncheckedUpdateManyInput>
+    /**
+     * Filter which CalendarEvents to update
+     */
+    where?: CalendarEventWhereInput
+    /**
+     * Limit how many CalendarEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CalendarEvent upsert
+   */
+  export type CalendarEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CalendarEvent to update in case it exists.
+     */
+    where: CalendarEventWhereUniqueInput
+    /**
+     * In case the CalendarEvent found by the `where` argument doesn't exist, create a new CalendarEvent with this data.
+     */
+    create: XOR<CalendarEventCreateInput, CalendarEventUncheckedCreateInput>
+    /**
+     * In case the CalendarEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CalendarEventUpdateInput, CalendarEventUncheckedUpdateInput>
+  }
+
+  /**
+   * CalendarEvent delete
+   */
+  export type CalendarEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+    /**
+     * Filter which CalendarEvent to delete.
+     */
+    where: CalendarEventWhereUniqueInput
+  }
+
+  /**
+   * CalendarEvent deleteMany
+   */
+  export type CalendarEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CalendarEvents to delete
+     */
+    where?: CalendarEventWhereInput
+    /**
+     * Limit how many CalendarEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CalendarEvent without action
+   */
+  export type CalendarEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CalendarEvent
+     */
+    select?: CalendarEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CalendarEvent
+     */
+    omit?: CalendarEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CalendarEventInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4062,6 +8373,57 @@ export namespace Prisma {
   export type MemoryScalarFieldEnum = (typeof MemoryScalarFieldEnum)[keyof typeof MemoryScalarFieldEnum]
 
 
+  export const ProgressEntryScalarFieldEnum: {
+    id: 'id',
+    date: 'date',
+    title: 'title',
+    description: 'description',
+    postedAt: 'postedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
+  };
+
+  export type ProgressEntryScalarFieldEnum = (typeof ProgressEntryScalarFieldEnum)[keyof typeof ProgressEntryScalarFieldEnum]
+
+
+  export const ProgressImageScalarFieldEnum: {
+    id: 'id',
+    url: 'url',
+    progressEntryId: 'progressEntryId',
+    createdAt: 'createdAt'
+  };
+
+  export type ProgressImageScalarFieldEnum = (typeof ProgressImageScalarFieldEnum)[keyof typeof ProgressImageScalarFieldEnum]
+
+
+  export const UserStatsScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    totalDays: 'totalDays',
+    currentStreak: 'currentStreak',
+    longestStreak: 'longestStreak',
+    lastPostedDate: 'lastPostedDate',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserStatsScalarFieldEnum = (typeof UserStatsScalarFieldEnum)[keyof typeof UserStatsScalarFieldEnum]
+
+
+  export const CalendarEventScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    date: 'date',
+    imageUrl: 'imageUrl',
+    category: 'category',
+    progressEntryId: 'progressEntryId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CalendarEventScalarFieldEnum = (typeof CalendarEventScalarFieldEnum)[keyof typeof CalendarEventScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -4110,6 +8472,44 @@ export namespace Prisma {
   export type MemoryOrderByRelevanceFieldEnum = (typeof MemoryOrderByRelevanceFieldEnum)[keyof typeof MemoryOrderByRelevanceFieldEnum]
 
 
+  export const ProgressEntryOrderByRelevanceFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    userId: 'userId'
+  };
+
+  export type ProgressEntryOrderByRelevanceFieldEnum = (typeof ProgressEntryOrderByRelevanceFieldEnum)[keyof typeof ProgressEntryOrderByRelevanceFieldEnum]
+
+
+  export const ProgressImageOrderByRelevanceFieldEnum: {
+    id: 'id',
+    url: 'url',
+    progressEntryId: 'progressEntryId'
+  };
+
+  export type ProgressImageOrderByRelevanceFieldEnum = (typeof ProgressImageOrderByRelevanceFieldEnum)[keyof typeof ProgressImageOrderByRelevanceFieldEnum]
+
+
+  export const UserStatsOrderByRelevanceFieldEnum: {
+    id: 'id',
+    userId: 'userId'
+  };
+
+  export type UserStatsOrderByRelevanceFieldEnum = (typeof UserStatsOrderByRelevanceFieldEnum)[keyof typeof UserStatsOrderByRelevanceFieldEnum]
+
+
+  export const CalendarEventOrderByRelevanceFieldEnum: {
+    id: 'id',
+    title: 'title',
+    imageUrl: 'imageUrl',
+    category: 'category',
+    progressEntryId: 'progressEntryId'
+  };
+
+  export type CalendarEventOrderByRelevanceFieldEnum = (typeof CalendarEventOrderByRelevanceFieldEnum)[keyof typeof CalendarEventOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -4141,6 +8541,13 @@ export namespace Prisma {
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
   /**
    * Deep Input Types
    */
@@ -4158,6 +8565,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     collections?: CollectionListRelationFilter
+    progressEntries?: ProgressEntryListRelationFilter
+    userStats?: XOR<UserStatsNullableScalarRelationFilter, UserStatsWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4169,6 +8578,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     collections?: CollectionOrderByRelationAggregateInput
+    progressEntries?: ProgressEntryOrderByRelationAggregateInput
+    userStats?: UserStatsOrderByWithRelationInput
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -4184,6 +8595,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     collections?: CollectionListRelationFilter
+    progressEntries?: ProgressEntryListRelationFilter
+    userStats?: XOR<UserStatsNullableScalarRelationFilter, UserStatsWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -4352,6 +8765,273 @@ export namespace Prisma {
     collectionId?: StringWithAggregatesFilter<"Memory"> | string
   }
 
+  export type ProgressEntryWhereInput = {
+    AND?: ProgressEntryWhereInput | ProgressEntryWhereInput[]
+    OR?: ProgressEntryWhereInput[]
+    NOT?: ProgressEntryWhereInput | ProgressEntryWhereInput[]
+    id?: StringFilter<"ProgressEntry"> | string
+    date?: DateTimeFilter<"ProgressEntry"> | Date | string
+    title?: StringFilter<"ProgressEntry"> | string
+    description?: StringNullableFilter<"ProgressEntry"> | string | null
+    postedAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    createdAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    userId?: StringFilter<"ProgressEntry"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    images?: ProgressImageListRelationFilter
+    calendarEvent?: XOR<CalendarEventNullableScalarRelationFilter, CalendarEventWhereInput> | null
+  }
+
+  export type ProgressEntryOrderByWithRelationInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    postedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    images?: ProgressImageOrderByRelationAggregateInput
+    calendarEvent?: CalendarEventOrderByWithRelationInput
+    _relevance?: ProgressEntryOrderByRelevanceInput
+  }
+
+  export type ProgressEntryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProgressEntryWhereInput | ProgressEntryWhereInput[]
+    OR?: ProgressEntryWhereInput[]
+    NOT?: ProgressEntryWhereInput | ProgressEntryWhereInput[]
+    date?: DateTimeFilter<"ProgressEntry"> | Date | string
+    title?: StringFilter<"ProgressEntry"> | string
+    description?: StringNullableFilter<"ProgressEntry"> | string | null
+    postedAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    createdAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    userId?: StringFilter<"ProgressEntry"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    images?: ProgressImageListRelationFilter
+    calendarEvent?: XOR<CalendarEventNullableScalarRelationFilter, CalendarEventWhereInput> | null
+  }, "id">
+
+  export type ProgressEntryOrderByWithAggregationInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    postedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    _count?: ProgressEntryCountOrderByAggregateInput
+    _max?: ProgressEntryMaxOrderByAggregateInput
+    _min?: ProgressEntryMinOrderByAggregateInput
+  }
+
+  export type ProgressEntryScalarWhereWithAggregatesInput = {
+    AND?: ProgressEntryScalarWhereWithAggregatesInput | ProgressEntryScalarWhereWithAggregatesInput[]
+    OR?: ProgressEntryScalarWhereWithAggregatesInput[]
+    NOT?: ProgressEntryScalarWhereWithAggregatesInput | ProgressEntryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProgressEntry"> | string
+    date?: DateTimeWithAggregatesFilter<"ProgressEntry"> | Date | string
+    title?: StringWithAggregatesFilter<"ProgressEntry"> | string
+    description?: StringNullableWithAggregatesFilter<"ProgressEntry"> | string | null
+    postedAt?: DateTimeWithAggregatesFilter<"ProgressEntry"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"ProgressEntry"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ProgressEntry"> | Date | string
+    userId?: StringWithAggregatesFilter<"ProgressEntry"> | string
+  }
+
+  export type ProgressImageWhereInput = {
+    AND?: ProgressImageWhereInput | ProgressImageWhereInput[]
+    OR?: ProgressImageWhereInput[]
+    NOT?: ProgressImageWhereInput | ProgressImageWhereInput[]
+    id?: StringFilter<"ProgressImage"> | string
+    url?: StringFilter<"ProgressImage"> | string
+    progressEntryId?: StringFilter<"ProgressImage"> | string
+    createdAt?: DateTimeFilter<"ProgressImage"> | Date | string
+    progressEntry?: XOR<ProgressEntryScalarRelationFilter, ProgressEntryWhereInput>
+  }
+
+  export type ProgressImageOrderByWithRelationInput = {
+    id?: SortOrder
+    url?: SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+    progressEntry?: ProgressEntryOrderByWithRelationInput
+    _relevance?: ProgressImageOrderByRelevanceInput
+  }
+
+  export type ProgressImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProgressImageWhereInput | ProgressImageWhereInput[]
+    OR?: ProgressImageWhereInput[]
+    NOT?: ProgressImageWhereInput | ProgressImageWhereInput[]
+    url?: StringFilter<"ProgressImage"> | string
+    progressEntryId?: StringFilter<"ProgressImage"> | string
+    createdAt?: DateTimeFilter<"ProgressImage"> | Date | string
+    progressEntry?: XOR<ProgressEntryScalarRelationFilter, ProgressEntryWhereInput>
+  }, "id">
+
+  export type ProgressImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    url?: SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+    _count?: ProgressImageCountOrderByAggregateInput
+    _max?: ProgressImageMaxOrderByAggregateInput
+    _min?: ProgressImageMinOrderByAggregateInput
+  }
+
+  export type ProgressImageScalarWhereWithAggregatesInput = {
+    AND?: ProgressImageScalarWhereWithAggregatesInput | ProgressImageScalarWhereWithAggregatesInput[]
+    OR?: ProgressImageScalarWhereWithAggregatesInput[]
+    NOT?: ProgressImageScalarWhereWithAggregatesInput | ProgressImageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProgressImage"> | string
+    url?: StringWithAggregatesFilter<"ProgressImage"> | string
+    progressEntryId?: StringWithAggregatesFilter<"ProgressImage"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ProgressImage"> | Date | string
+  }
+
+  export type UserStatsWhereInput = {
+    AND?: UserStatsWhereInput | UserStatsWhereInput[]
+    OR?: UserStatsWhereInput[]
+    NOT?: UserStatsWhereInput | UserStatsWhereInput[]
+    id?: StringFilter<"UserStats"> | string
+    userId?: StringFilter<"UserStats"> | string
+    totalDays?: IntFilter<"UserStats"> | number
+    currentStreak?: IntFilter<"UserStats"> | number
+    longestStreak?: IntFilter<"UserStats"> | number
+    lastPostedDate?: DateTimeNullableFilter<"UserStats"> | Date | string | null
+    updatedAt?: DateTimeFilter<"UserStats"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserStatsOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalDays?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    lastPostedDate?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    _relevance?: UserStatsOrderByRelevanceInput
+  }
+
+  export type UserStatsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: UserStatsWhereInput | UserStatsWhereInput[]
+    OR?: UserStatsWhereInput[]
+    NOT?: UserStatsWhereInput | UserStatsWhereInput[]
+    totalDays?: IntFilter<"UserStats"> | number
+    currentStreak?: IntFilter<"UserStats"> | number
+    longestStreak?: IntFilter<"UserStats"> | number
+    lastPostedDate?: DateTimeNullableFilter<"UserStats"> | Date | string | null
+    updatedAt?: DateTimeFilter<"UserStats"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type UserStatsOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalDays?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    lastPostedDate?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    _count?: UserStatsCountOrderByAggregateInput
+    _avg?: UserStatsAvgOrderByAggregateInput
+    _max?: UserStatsMaxOrderByAggregateInput
+    _min?: UserStatsMinOrderByAggregateInput
+    _sum?: UserStatsSumOrderByAggregateInput
+  }
+
+  export type UserStatsScalarWhereWithAggregatesInput = {
+    AND?: UserStatsScalarWhereWithAggregatesInput | UserStatsScalarWhereWithAggregatesInput[]
+    OR?: UserStatsScalarWhereWithAggregatesInput[]
+    NOT?: UserStatsScalarWhereWithAggregatesInput | UserStatsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserStats"> | string
+    userId?: StringWithAggregatesFilter<"UserStats"> | string
+    totalDays?: IntWithAggregatesFilter<"UserStats"> | number
+    currentStreak?: IntWithAggregatesFilter<"UserStats"> | number
+    longestStreak?: IntWithAggregatesFilter<"UserStats"> | number
+    lastPostedDate?: DateTimeNullableWithAggregatesFilter<"UserStats"> | Date | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"UserStats"> | Date | string
+  }
+
+  export type CalendarEventWhereInput = {
+    AND?: CalendarEventWhereInput | CalendarEventWhereInput[]
+    OR?: CalendarEventWhereInput[]
+    NOT?: CalendarEventWhereInput | CalendarEventWhereInput[]
+    id?: StringFilter<"CalendarEvent"> | string
+    title?: StringFilter<"CalendarEvent"> | string
+    date?: DateTimeFilter<"CalendarEvent"> | Date | string
+    imageUrl?: StringNullableFilter<"CalendarEvent"> | string | null
+    category?: StringNullableFilter<"CalendarEvent"> | string | null
+    progressEntryId?: StringFilter<"CalendarEvent"> | string
+    createdAt?: DateTimeFilter<"CalendarEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"CalendarEvent"> | Date | string
+    progressEntry?: XOR<ProgressEntryScalarRelationFilter, ProgressEntryWhereInput>
+  }
+
+  export type CalendarEventOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    date?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    progressEntry?: ProgressEntryOrderByWithRelationInput
+    _relevance?: CalendarEventOrderByRelevanceInput
+  }
+
+  export type CalendarEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    progressEntryId?: string
+    AND?: CalendarEventWhereInput | CalendarEventWhereInput[]
+    OR?: CalendarEventWhereInput[]
+    NOT?: CalendarEventWhereInput | CalendarEventWhereInput[]
+    title?: StringFilter<"CalendarEvent"> | string
+    date?: DateTimeFilter<"CalendarEvent"> | Date | string
+    imageUrl?: StringNullableFilter<"CalendarEvent"> | string | null
+    category?: StringNullableFilter<"CalendarEvent"> | string | null
+    createdAt?: DateTimeFilter<"CalendarEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"CalendarEvent"> | Date | string
+    progressEntry?: XOR<ProgressEntryScalarRelationFilter, ProgressEntryWhereInput>
+  }, "id" | "progressEntryId">
+
+  export type CalendarEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    date?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CalendarEventCountOrderByAggregateInput
+    _max?: CalendarEventMaxOrderByAggregateInput
+    _min?: CalendarEventMinOrderByAggregateInput
+  }
+
+  export type CalendarEventScalarWhereWithAggregatesInput = {
+    AND?: CalendarEventScalarWhereWithAggregatesInput | CalendarEventScalarWhereWithAggregatesInput[]
+    OR?: CalendarEventScalarWhereWithAggregatesInput[]
+    NOT?: CalendarEventScalarWhereWithAggregatesInput | CalendarEventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CalendarEvent"> | string
+    title?: StringWithAggregatesFilter<"CalendarEvent"> | string
+    date?: DateTimeWithAggregatesFilter<"CalendarEvent"> | Date | string
+    imageUrl?: StringNullableWithAggregatesFilter<"CalendarEvent"> | string | null
+    category?: StringNullableWithAggregatesFilter<"CalendarEvent"> | string | null
+    progressEntryId?: StringWithAggregatesFilter<"CalendarEvent"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"CalendarEvent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CalendarEvent"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -4361,6 +9041,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     collections?: CollectionCreateNestedManyWithoutUserInput
+    progressEntries?: ProgressEntryCreateNestedManyWithoutUserInput
+    userStats?: UserStatsCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -4372,6 +9054,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     collections?: CollectionUncheckedCreateNestedManyWithoutUserInput
+    progressEntries?: ProgressEntryUncheckedCreateNestedManyWithoutUserInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -4383,6 +9067,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     collections?: CollectionUpdateManyWithoutUserNestedInput
+    progressEntries?: ProgressEntryUpdateManyWithoutUserNestedInput
+    userStats?: UserStatsUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -4394,6 +9080,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     collections?: CollectionUncheckedUpdateManyWithoutUserNestedInput
+    progressEntries?: ProgressEntryUncheckedUpdateManyWithoutUserNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -4575,6 +9263,283 @@ export namespace Prisma {
     collectionId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type ProgressEntryCreateInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProgressEntriesInput
+    images?: ProgressImageCreateNestedManyWithoutProgressEntryInput
+    calendarEvent?: CalendarEventCreateNestedOneWithoutProgressEntryInput
+  }
+
+  export type ProgressEntryUncheckedCreateInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    images?: ProgressImageUncheckedCreateNestedManyWithoutProgressEntryInput
+    calendarEvent?: CalendarEventUncheckedCreateNestedOneWithoutProgressEntryInput
+  }
+
+  export type ProgressEntryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProgressEntriesNestedInput
+    images?: ProgressImageUpdateManyWithoutProgressEntryNestedInput
+    calendarEvent?: CalendarEventUpdateOneWithoutProgressEntryNestedInput
+  }
+
+  export type ProgressEntryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    images?: ProgressImageUncheckedUpdateManyWithoutProgressEntryNestedInput
+    calendarEvent?: CalendarEventUncheckedUpdateOneWithoutProgressEntryNestedInput
+  }
+
+  export type ProgressEntryCreateManyInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+  }
+
+  export type ProgressEntryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressEntryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProgressImageCreateInput = {
+    id?: string
+    url: string
+    createdAt?: Date | string
+    progressEntry: ProgressEntryCreateNestedOneWithoutImagesInput
+  }
+
+  export type ProgressImageUncheckedCreateInput = {
+    id?: string
+    url: string
+    progressEntryId: string
+    createdAt?: Date | string
+  }
+
+  export type ProgressImageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    progressEntry?: ProgressEntryUpdateOneRequiredWithoutImagesNestedInput
+  }
+
+  export type ProgressImageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    progressEntryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressImageCreateManyInput = {
+    id?: string
+    url: string
+    progressEntryId: string
+    createdAt?: Date | string
+  }
+
+  export type ProgressImageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressImageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    progressEntryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserStatsCreateInput = {
+    id?: string
+    totalDays?: number
+    currentStreak?: number
+    longestStreak?: number
+    lastPostedDate?: Date | string | null
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutUserStatsInput
+  }
+
+  export type UserStatsUncheckedCreateInput = {
+    id?: string
+    userId: string
+    totalDays?: number
+    currentStreak?: number
+    longestStreak?: number
+    lastPostedDate?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type UserStatsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalDays?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    lastPostedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserStatsNestedInput
+  }
+
+  export type UserStatsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    totalDays?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    lastPostedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserStatsCreateManyInput = {
+    id?: string
+    userId: string
+    totalDays?: number
+    currentStreak?: number
+    longestStreak?: number
+    lastPostedDate?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type UserStatsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalDays?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    lastPostedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserStatsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    totalDays?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    lastPostedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CalendarEventCreateInput = {
+    id?: string
+    title: string
+    date: Date | string
+    imageUrl?: string | null
+    category?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    progressEntry: ProgressEntryCreateNestedOneWithoutCalendarEventInput
+  }
+
+  export type CalendarEventUncheckedCreateInput = {
+    id?: string
+    title: string
+    date: Date | string
+    imageUrl?: string | null
+    category?: string | null
+    progressEntryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CalendarEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    progressEntry?: ProgressEntryUpdateOneRequiredWithoutCalendarEventNestedInput
+  }
+
+  export type CalendarEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    progressEntryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CalendarEventCreateManyInput = {
+    id?: string
+    title: string
+    date: Date | string
+    imageUrl?: string | null
+    category?: string | null
+    progressEntryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CalendarEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CalendarEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    progressEntryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -4622,12 +9587,27 @@ export namespace Prisma {
     none?: CollectionWhereInput
   }
 
+  export type ProgressEntryListRelationFilter = {
+    every?: ProgressEntryWhereInput
+    some?: ProgressEntryWhereInput
+    none?: ProgressEntryWhereInput
+  }
+
+  export type UserStatsNullableScalarRelationFilter = {
+    is?: UserStatsWhereInput | null
+    isNot?: UserStatsWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type CollectionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProgressEntryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -4825,6 +9805,231 @@ export namespace Prisma {
     collectionId?: SortOrder
   }
 
+  export type ProgressImageListRelationFilter = {
+    every?: ProgressImageWhereInput
+    some?: ProgressImageWhereInput
+    none?: ProgressImageWhereInput
+  }
+
+  export type CalendarEventNullableScalarRelationFilter = {
+    is?: CalendarEventWhereInput | null
+    isNot?: CalendarEventWhereInput | null
+  }
+
+  export type ProgressImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProgressEntryOrderByRelevanceInput = {
+    fields: ProgressEntryOrderByRelevanceFieldEnum | ProgressEntryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ProgressEntryCountOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    postedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ProgressEntryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    postedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ProgressEntryMinOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    postedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ProgressEntryScalarRelationFilter = {
+    is?: ProgressEntryWhereInput
+    isNot?: ProgressEntryWhereInput
+  }
+
+  export type ProgressImageOrderByRelevanceInput = {
+    fields: ProgressImageOrderByRelevanceFieldEnum | ProgressImageOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ProgressImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProgressImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProgressImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type UserStatsOrderByRelevanceInput = {
+    fields: UserStatsOrderByRelevanceFieldEnum | UserStatsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type UserStatsCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalDays?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    lastPostedDate?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserStatsAvgOrderByAggregateInput = {
+    totalDays?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+  }
+
+  export type UserStatsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalDays?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    lastPostedDate?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserStatsMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    totalDays?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+    lastPostedDate?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserStatsSumOrderByAggregateInput = {
+    totalDays?: SortOrder
+    currentStreak?: SortOrder
+    longestStreak?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type CalendarEventOrderByRelevanceInput = {
+    fields: CalendarEventOrderByRelevanceFieldEnum | CalendarEventOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CalendarEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    date?: SortOrder
+    imageUrl?: SortOrder
+    category?: SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CalendarEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    date?: SortOrder
+    imageUrl?: SortOrder
+    category?: SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CalendarEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    date?: SortOrder
+    imageUrl?: SortOrder
+    category?: SortOrder
+    progressEntryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type CollectionCreateNestedManyWithoutUserInput = {
     create?: XOR<CollectionCreateWithoutUserInput, CollectionUncheckedCreateWithoutUserInput> | CollectionCreateWithoutUserInput[] | CollectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CollectionCreateOrConnectWithoutUserInput | CollectionCreateOrConnectWithoutUserInput[]
@@ -4832,11 +10037,37 @@ export namespace Prisma {
     connect?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
   }
 
+  export type ProgressEntryCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProgressEntryCreateWithoutUserInput, ProgressEntryUncheckedCreateWithoutUserInput> | ProgressEntryCreateWithoutUserInput[] | ProgressEntryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProgressEntryCreateOrConnectWithoutUserInput | ProgressEntryCreateOrConnectWithoutUserInput[]
+    createMany?: ProgressEntryCreateManyUserInputEnvelope
+    connect?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+  }
+
+  export type UserStatsCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserStatsCreateWithoutUserInput, UserStatsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutUserInput
+    connect?: UserStatsWhereUniqueInput
+  }
+
   export type CollectionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<CollectionCreateWithoutUserInput, CollectionUncheckedCreateWithoutUserInput> | CollectionCreateWithoutUserInput[] | CollectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CollectionCreateOrConnectWithoutUserInput | CollectionCreateOrConnectWithoutUserInput[]
     createMany?: CollectionCreateManyUserInputEnvelope
     connect?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+  }
+
+  export type ProgressEntryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProgressEntryCreateWithoutUserInput, ProgressEntryUncheckedCreateWithoutUserInput> | ProgressEntryCreateWithoutUserInput[] | ProgressEntryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProgressEntryCreateOrConnectWithoutUserInput | ProgressEntryCreateOrConnectWithoutUserInput[]
+    createMany?: ProgressEntryCreateManyUserInputEnvelope
+    connect?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+  }
+
+  export type UserStatsUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UserStatsCreateWithoutUserInput, UserStatsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutUserInput
+    connect?: UserStatsWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -4865,6 +10096,30 @@ export namespace Prisma {
     deleteMany?: CollectionScalarWhereInput | CollectionScalarWhereInput[]
   }
 
+  export type ProgressEntryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProgressEntryCreateWithoutUserInput, ProgressEntryUncheckedCreateWithoutUserInput> | ProgressEntryCreateWithoutUserInput[] | ProgressEntryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProgressEntryCreateOrConnectWithoutUserInput | ProgressEntryCreateOrConnectWithoutUserInput[]
+    upsert?: ProgressEntryUpsertWithWhereUniqueWithoutUserInput | ProgressEntryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProgressEntryCreateManyUserInputEnvelope
+    set?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+    disconnect?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+    delete?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+    connect?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+    update?: ProgressEntryUpdateWithWhereUniqueWithoutUserInput | ProgressEntryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProgressEntryUpdateManyWithWhereWithoutUserInput | ProgressEntryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProgressEntryScalarWhereInput | ProgressEntryScalarWhereInput[]
+  }
+
+  export type UserStatsUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserStatsCreateWithoutUserInput, UserStatsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutUserInput
+    upsert?: UserStatsUpsertWithoutUserInput
+    disconnect?: UserStatsWhereInput | boolean
+    delete?: UserStatsWhereInput | boolean
+    connect?: UserStatsWhereUniqueInput
+    update?: XOR<XOR<UserStatsUpdateToOneWithWhereWithoutUserInput, UserStatsUpdateWithoutUserInput>, UserStatsUncheckedUpdateWithoutUserInput>
+  }
+
   export type CollectionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<CollectionCreateWithoutUserInput, CollectionUncheckedCreateWithoutUserInput> | CollectionCreateWithoutUserInput[] | CollectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CollectionCreateOrConnectWithoutUserInput | CollectionCreateOrConnectWithoutUserInput[]
@@ -4877,6 +10132,30 @@ export namespace Prisma {
     update?: CollectionUpdateWithWhereUniqueWithoutUserInput | CollectionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: CollectionUpdateManyWithWhereWithoutUserInput | CollectionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: CollectionScalarWhereInput | CollectionScalarWhereInput[]
+  }
+
+  export type ProgressEntryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProgressEntryCreateWithoutUserInput, ProgressEntryUncheckedCreateWithoutUserInput> | ProgressEntryCreateWithoutUserInput[] | ProgressEntryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProgressEntryCreateOrConnectWithoutUserInput | ProgressEntryCreateOrConnectWithoutUserInput[]
+    upsert?: ProgressEntryUpsertWithWhereUniqueWithoutUserInput | ProgressEntryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProgressEntryCreateManyUserInputEnvelope
+    set?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+    disconnect?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+    delete?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+    connect?: ProgressEntryWhereUniqueInput | ProgressEntryWhereUniqueInput[]
+    update?: ProgressEntryUpdateWithWhereUniqueWithoutUserInput | ProgressEntryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProgressEntryUpdateManyWithWhereWithoutUserInput | ProgressEntryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProgressEntryScalarWhereInput | ProgressEntryScalarWhereInput[]
+  }
+
+  export type UserStatsUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UserStatsCreateWithoutUserInput, UserStatsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UserStatsCreateOrConnectWithoutUserInput
+    upsert?: UserStatsUpsertWithoutUserInput
+    disconnect?: UserStatsWhereInput | boolean
+    delete?: UserStatsWhereInput | boolean
+    connect?: UserStatsWhereUniqueInput
+    update?: XOR<XOR<UserStatsUpdateToOneWithWhereWithoutUserInput, UserStatsUpdateWithoutUserInput>, UserStatsUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutCollectionsInput = {
@@ -4951,6 +10230,148 @@ export namespace Prisma {
     upsert?: CollectionUpsertWithoutMemoriesInput
     connect?: CollectionWhereUniqueInput
     update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutMemoriesInput, CollectionUpdateWithoutMemoriesInput>, CollectionUncheckedUpdateWithoutMemoriesInput>
+  }
+
+  export type UserCreateNestedOneWithoutProgressEntriesInput = {
+    create?: XOR<UserCreateWithoutProgressEntriesInput, UserUncheckedCreateWithoutProgressEntriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProgressEntriesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProgressImageCreateNestedManyWithoutProgressEntryInput = {
+    create?: XOR<ProgressImageCreateWithoutProgressEntryInput, ProgressImageUncheckedCreateWithoutProgressEntryInput> | ProgressImageCreateWithoutProgressEntryInput[] | ProgressImageUncheckedCreateWithoutProgressEntryInput[]
+    connectOrCreate?: ProgressImageCreateOrConnectWithoutProgressEntryInput | ProgressImageCreateOrConnectWithoutProgressEntryInput[]
+    createMany?: ProgressImageCreateManyProgressEntryInputEnvelope
+    connect?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+  }
+
+  export type CalendarEventCreateNestedOneWithoutProgressEntryInput = {
+    create?: XOR<CalendarEventCreateWithoutProgressEntryInput, CalendarEventUncheckedCreateWithoutProgressEntryInput>
+    connectOrCreate?: CalendarEventCreateOrConnectWithoutProgressEntryInput
+    connect?: CalendarEventWhereUniqueInput
+  }
+
+  export type ProgressImageUncheckedCreateNestedManyWithoutProgressEntryInput = {
+    create?: XOR<ProgressImageCreateWithoutProgressEntryInput, ProgressImageUncheckedCreateWithoutProgressEntryInput> | ProgressImageCreateWithoutProgressEntryInput[] | ProgressImageUncheckedCreateWithoutProgressEntryInput[]
+    connectOrCreate?: ProgressImageCreateOrConnectWithoutProgressEntryInput | ProgressImageCreateOrConnectWithoutProgressEntryInput[]
+    createMany?: ProgressImageCreateManyProgressEntryInputEnvelope
+    connect?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+  }
+
+  export type CalendarEventUncheckedCreateNestedOneWithoutProgressEntryInput = {
+    create?: XOR<CalendarEventCreateWithoutProgressEntryInput, CalendarEventUncheckedCreateWithoutProgressEntryInput>
+    connectOrCreate?: CalendarEventCreateOrConnectWithoutProgressEntryInput
+    connect?: CalendarEventWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutProgressEntriesNestedInput = {
+    create?: XOR<UserCreateWithoutProgressEntriesInput, UserUncheckedCreateWithoutProgressEntriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProgressEntriesInput
+    upsert?: UserUpsertWithoutProgressEntriesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProgressEntriesInput, UserUpdateWithoutProgressEntriesInput>, UserUncheckedUpdateWithoutProgressEntriesInput>
+  }
+
+  export type ProgressImageUpdateManyWithoutProgressEntryNestedInput = {
+    create?: XOR<ProgressImageCreateWithoutProgressEntryInput, ProgressImageUncheckedCreateWithoutProgressEntryInput> | ProgressImageCreateWithoutProgressEntryInput[] | ProgressImageUncheckedCreateWithoutProgressEntryInput[]
+    connectOrCreate?: ProgressImageCreateOrConnectWithoutProgressEntryInput | ProgressImageCreateOrConnectWithoutProgressEntryInput[]
+    upsert?: ProgressImageUpsertWithWhereUniqueWithoutProgressEntryInput | ProgressImageUpsertWithWhereUniqueWithoutProgressEntryInput[]
+    createMany?: ProgressImageCreateManyProgressEntryInputEnvelope
+    set?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+    disconnect?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+    delete?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+    connect?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+    update?: ProgressImageUpdateWithWhereUniqueWithoutProgressEntryInput | ProgressImageUpdateWithWhereUniqueWithoutProgressEntryInput[]
+    updateMany?: ProgressImageUpdateManyWithWhereWithoutProgressEntryInput | ProgressImageUpdateManyWithWhereWithoutProgressEntryInput[]
+    deleteMany?: ProgressImageScalarWhereInput | ProgressImageScalarWhereInput[]
+  }
+
+  export type CalendarEventUpdateOneWithoutProgressEntryNestedInput = {
+    create?: XOR<CalendarEventCreateWithoutProgressEntryInput, CalendarEventUncheckedCreateWithoutProgressEntryInput>
+    connectOrCreate?: CalendarEventCreateOrConnectWithoutProgressEntryInput
+    upsert?: CalendarEventUpsertWithoutProgressEntryInput
+    disconnect?: CalendarEventWhereInput | boolean
+    delete?: CalendarEventWhereInput | boolean
+    connect?: CalendarEventWhereUniqueInput
+    update?: XOR<XOR<CalendarEventUpdateToOneWithWhereWithoutProgressEntryInput, CalendarEventUpdateWithoutProgressEntryInput>, CalendarEventUncheckedUpdateWithoutProgressEntryInput>
+  }
+
+  export type ProgressImageUncheckedUpdateManyWithoutProgressEntryNestedInput = {
+    create?: XOR<ProgressImageCreateWithoutProgressEntryInput, ProgressImageUncheckedCreateWithoutProgressEntryInput> | ProgressImageCreateWithoutProgressEntryInput[] | ProgressImageUncheckedCreateWithoutProgressEntryInput[]
+    connectOrCreate?: ProgressImageCreateOrConnectWithoutProgressEntryInput | ProgressImageCreateOrConnectWithoutProgressEntryInput[]
+    upsert?: ProgressImageUpsertWithWhereUniqueWithoutProgressEntryInput | ProgressImageUpsertWithWhereUniqueWithoutProgressEntryInput[]
+    createMany?: ProgressImageCreateManyProgressEntryInputEnvelope
+    set?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+    disconnect?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+    delete?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+    connect?: ProgressImageWhereUniqueInput | ProgressImageWhereUniqueInput[]
+    update?: ProgressImageUpdateWithWhereUniqueWithoutProgressEntryInput | ProgressImageUpdateWithWhereUniqueWithoutProgressEntryInput[]
+    updateMany?: ProgressImageUpdateManyWithWhereWithoutProgressEntryInput | ProgressImageUpdateManyWithWhereWithoutProgressEntryInput[]
+    deleteMany?: ProgressImageScalarWhereInput | ProgressImageScalarWhereInput[]
+  }
+
+  export type CalendarEventUncheckedUpdateOneWithoutProgressEntryNestedInput = {
+    create?: XOR<CalendarEventCreateWithoutProgressEntryInput, CalendarEventUncheckedCreateWithoutProgressEntryInput>
+    connectOrCreate?: CalendarEventCreateOrConnectWithoutProgressEntryInput
+    upsert?: CalendarEventUpsertWithoutProgressEntryInput
+    disconnect?: CalendarEventWhereInput | boolean
+    delete?: CalendarEventWhereInput | boolean
+    connect?: CalendarEventWhereUniqueInput
+    update?: XOR<XOR<CalendarEventUpdateToOneWithWhereWithoutProgressEntryInput, CalendarEventUpdateWithoutProgressEntryInput>, CalendarEventUncheckedUpdateWithoutProgressEntryInput>
+  }
+
+  export type ProgressEntryCreateNestedOneWithoutImagesInput = {
+    create?: XOR<ProgressEntryCreateWithoutImagesInput, ProgressEntryUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: ProgressEntryCreateOrConnectWithoutImagesInput
+    connect?: ProgressEntryWhereUniqueInput
+  }
+
+  export type ProgressEntryUpdateOneRequiredWithoutImagesNestedInput = {
+    create?: XOR<ProgressEntryCreateWithoutImagesInput, ProgressEntryUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: ProgressEntryCreateOrConnectWithoutImagesInput
+    upsert?: ProgressEntryUpsertWithoutImagesInput
+    connect?: ProgressEntryWhereUniqueInput
+    update?: XOR<XOR<ProgressEntryUpdateToOneWithWhereWithoutImagesInput, ProgressEntryUpdateWithoutImagesInput>, ProgressEntryUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type UserCreateNestedOneWithoutUserStatsInput = {
+    create?: XOR<UserCreateWithoutUserStatsInput, UserUncheckedCreateWithoutUserStatsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserStatsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type UserUpdateOneRequiredWithoutUserStatsNestedInput = {
+    create?: XOR<UserCreateWithoutUserStatsInput, UserUncheckedCreateWithoutUserStatsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserStatsInput
+    upsert?: UserUpsertWithoutUserStatsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserStatsInput, UserUpdateWithoutUserStatsInput>, UserUncheckedUpdateWithoutUserStatsInput>
+  }
+
+  export type ProgressEntryCreateNestedOneWithoutCalendarEventInput = {
+    create?: XOR<ProgressEntryCreateWithoutCalendarEventInput, ProgressEntryUncheckedCreateWithoutCalendarEventInput>
+    connectOrCreate?: ProgressEntryCreateOrConnectWithoutCalendarEventInput
+    connect?: ProgressEntryWhereUniqueInput
+  }
+
+  export type ProgressEntryUpdateOneRequiredWithoutCalendarEventNestedInput = {
+    create?: XOR<ProgressEntryCreateWithoutCalendarEventInput, ProgressEntryUncheckedCreateWithoutCalendarEventInput>
+    connectOrCreate?: ProgressEntryCreateOrConnectWithoutCalendarEventInput
+    upsert?: ProgressEntryUpsertWithoutCalendarEventInput
+    connect?: ProgressEntryWhereUniqueInput
+    update?: XOR<XOR<ProgressEntryUpdateToOneWithWhereWithoutCalendarEventInput, ProgressEntryUpdateWithoutCalendarEventInput>, ProgressEntryUncheckedUpdateWithoutCalendarEventInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5079,6 +10500,58 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type CollectionCreateWithoutUserInput = {
     id?: string
     title: string
@@ -5111,6 +10584,63 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProgressEntryCreateWithoutUserInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: ProgressImageCreateNestedManyWithoutProgressEntryInput
+    calendarEvent?: CalendarEventCreateNestedOneWithoutProgressEntryInput
+  }
+
+  export type ProgressEntryUncheckedCreateWithoutUserInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: ProgressImageUncheckedCreateNestedManyWithoutProgressEntryInput
+    calendarEvent?: CalendarEventUncheckedCreateNestedOneWithoutProgressEntryInput
+  }
+
+  export type ProgressEntryCreateOrConnectWithoutUserInput = {
+    where: ProgressEntryWhereUniqueInput
+    create: XOR<ProgressEntryCreateWithoutUserInput, ProgressEntryUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProgressEntryCreateManyUserInputEnvelope = {
+    data: ProgressEntryCreateManyUserInput | ProgressEntryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserStatsCreateWithoutUserInput = {
+    id?: string
+    totalDays?: number
+    currentStreak?: number
+    longestStreak?: number
+    lastPostedDate?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type UserStatsUncheckedCreateWithoutUserInput = {
+    id?: string
+    totalDays?: number
+    currentStreak?: number
+    longestStreak?: number
+    lastPostedDate?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type UserStatsCreateOrConnectWithoutUserInput = {
+    where: UserStatsWhereUniqueInput
+    create: XOR<UserStatsCreateWithoutUserInput, UserStatsUncheckedCreateWithoutUserInput>
+  }
+
   export type CollectionUpsertWithWhereUniqueWithoutUserInput = {
     where: CollectionWhereUniqueInput
     update: XOR<CollectionUpdateWithoutUserInput, CollectionUncheckedUpdateWithoutUserInput>
@@ -5141,6 +10671,65 @@ export namespace Prisma {
     userId?: StringFilter<"Collection"> | string
   }
 
+  export type ProgressEntryUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProgressEntryWhereUniqueInput
+    update: XOR<ProgressEntryUpdateWithoutUserInput, ProgressEntryUncheckedUpdateWithoutUserInput>
+    create: XOR<ProgressEntryCreateWithoutUserInput, ProgressEntryUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProgressEntryUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProgressEntryWhereUniqueInput
+    data: XOR<ProgressEntryUpdateWithoutUserInput, ProgressEntryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProgressEntryUpdateManyWithWhereWithoutUserInput = {
+    where: ProgressEntryScalarWhereInput
+    data: XOR<ProgressEntryUpdateManyMutationInput, ProgressEntryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProgressEntryScalarWhereInput = {
+    AND?: ProgressEntryScalarWhereInput | ProgressEntryScalarWhereInput[]
+    OR?: ProgressEntryScalarWhereInput[]
+    NOT?: ProgressEntryScalarWhereInput | ProgressEntryScalarWhereInput[]
+    id?: StringFilter<"ProgressEntry"> | string
+    date?: DateTimeFilter<"ProgressEntry"> | Date | string
+    title?: StringFilter<"ProgressEntry"> | string
+    description?: StringNullableFilter<"ProgressEntry"> | string | null
+    postedAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    createdAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressEntry"> | Date | string
+    userId?: StringFilter<"ProgressEntry"> | string
+  }
+
+  export type UserStatsUpsertWithoutUserInput = {
+    update: XOR<UserStatsUpdateWithoutUserInput, UserStatsUncheckedUpdateWithoutUserInput>
+    create: XOR<UserStatsCreateWithoutUserInput, UserStatsUncheckedCreateWithoutUserInput>
+    where?: UserStatsWhereInput
+  }
+
+  export type UserStatsUpdateToOneWithWhereWithoutUserInput = {
+    where?: UserStatsWhereInput
+    data: XOR<UserStatsUpdateWithoutUserInput, UserStatsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserStatsUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalDays?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    lastPostedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserStatsUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    totalDays?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    longestStreak?: IntFieldUpdateOperationsInput | number
+    lastPostedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateWithoutCollectionsInput = {
     id?: string
     name?: string | null
@@ -5149,6 +10738,8 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    progressEntries?: ProgressEntryCreateNestedManyWithoutUserInput
+    userStats?: UserStatsCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCollectionsInput = {
@@ -5159,6 +10750,8 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    progressEntries?: ProgressEntryUncheckedCreateNestedManyWithoutUserInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCollectionsInput = {
@@ -5213,6 +10806,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    progressEntries?: ProgressEntryUpdateManyWithoutUserNestedInput
+    userStats?: UserStatsUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCollectionsInput = {
@@ -5223,6 +10818,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    progressEntries?: ProgressEntryUncheckedUpdateManyWithoutUserNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type MemoryUpsertWithWhereUniqueWithoutCollectionInput = {
@@ -5314,12 +10911,382 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type UserCreateWithoutProgressEntriesInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collections?: CollectionCreateNestedManyWithoutUserInput
+    userStats?: UserStatsCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutProgressEntriesInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collections?: CollectionUncheckedCreateNestedManyWithoutUserInput
+    userStats?: UserStatsUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutProgressEntriesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProgressEntriesInput, UserUncheckedCreateWithoutProgressEntriesInput>
+  }
+
+  export type ProgressImageCreateWithoutProgressEntryInput = {
+    id?: string
+    url: string
+    createdAt?: Date | string
+  }
+
+  export type ProgressImageUncheckedCreateWithoutProgressEntryInput = {
+    id?: string
+    url: string
+    createdAt?: Date | string
+  }
+
+  export type ProgressImageCreateOrConnectWithoutProgressEntryInput = {
+    where: ProgressImageWhereUniqueInput
+    create: XOR<ProgressImageCreateWithoutProgressEntryInput, ProgressImageUncheckedCreateWithoutProgressEntryInput>
+  }
+
+  export type ProgressImageCreateManyProgressEntryInputEnvelope = {
+    data: ProgressImageCreateManyProgressEntryInput | ProgressImageCreateManyProgressEntryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CalendarEventCreateWithoutProgressEntryInput = {
+    id?: string
+    title: string
+    date: Date | string
+    imageUrl?: string | null
+    category?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CalendarEventUncheckedCreateWithoutProgressEntryInput = {
+    id?: string
+    title: string
+    date: Date | string
+    imageUrl?: string | null
+    category?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CalendarEventCreateOrConnectWithoutProgressEntryInput = {
+    where: CalendarEventWhereUniqueInput
+    create: XOR<CalendarEventCreateWithoutProgressEntryInput, CalendarEventUncheckedCreateWithoutProgressEntryInput>
+  }
+
+  export type UserUpsertWithoutProgressEntriesInput = {
+    update: XOR<UserUpdateWithoutProgressEntriesInput, UserUncheckedUpdateWithoutProgressEntriesInput>
+    create: XOR<UserCreateWithoutProgressEntriesInput, UserUncheckedCreateWithoutProgressEntriesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProgressEntriesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProgressEntriesInput, UserUncheckedUpdateWithoutProgressEntriesInput>
+  }
+
+  export type UserUpdateWithoutProgressEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collections?: CollectionUpdateManyWithoutUserNestedInput
+    userStats?: UserStatsUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProgressEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collections?: CollectionUncheckedUpdateManyWithoutUserNestedInput
+    userStats?: UserStatsUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type ProgressImageUpsertWithWhereUniqueWithoutProgressEntryInput = {
+    where: ProgressImageWhereUniqueInput
+    update: XOR<ProgressImageUpdateWithoutProgressEntryInput, ProgressImageUncheckedUpdateWithoutProgressEntryInput>
+    create: XOR<ProgressImageCreateWithoutProgressEntryInput, ProgressImageUncheckedCreateWithoutProgressEntryInput>
+  }
+
+  export type ProgressImageUpdateWithWhereUniqueWithoutProgressEntryInput = {
+    where: ProgressImageWhereUniqueInput
+    data: XOR<ProgressImageUpdateWithoutProgressEntryInput, ProgressImageUncheckedUpdateWithoutProgressEntryInput>
+  }
+
+  export type ProgressImageUpdateManyWithWhereWithoutProgressEntryInput = {
+    where: ProgressImageScalarWhereInput
+    data: XOR<ProgressImageUpdateManyMutationInput, ProgressImageUncheckedUpdateManyWithoutProgressEntryInput>
+  }
+
+  export type ProgressImageScalarWhereInput = {
+    AND?: ProgressImageScalarWhereInput | ProgressImageScalarWhereInput[]
+    OR?: ProgressImageScalarWhereInput[]
+    NOT?: ProgressImageScalarWhereInput | ProgressImageScalarWhereInput[]
+    id?: StringFilter<"ProgressImage"> | string
+    url?: StringFilter<"ProgressImage"> | string
+    progressEntryId?: StringFilter<"ProgressImage"> | string
+    createdAt?: DateTimeFilter<"ProgressImage"> | Date | string
+  }
+
+  export type CalendarEventUpsertWithoutProgressEntryInput = {
+    update: XOR<CalendarEventUpdateWithoutProgressEntryInput, CalendarEventUncheckedUpdateWithoutProgressEntryInput>
+    create: XOR<CalendarEventCreateWithoutProgressEntryInput, CalendarEventUncheckedCreateWithoutProgressEntryInput>
+    where?: CalendarEventWhereInput
+  }
+
+  export type CalendarEventUpdateToOneWithWhereWithoutProgressEntryInput = {
+    where?: CalendarEventWhereInput
+    data: XOR<CalendarEventUpdateWithoutProgressEntryInput, CalendarEventUncheckedUpdateWithoutProgressEntryInput>
+  }
+
+  export type CalendarEventUpdateWithoutProgressEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CalendarEventUncheckedUpdateWithoutProgressEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressEntryCreateWithoutImagesInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProgressEntriesInput
+    calendarEvent?: CalendarEventCreateNestedOneWithoutProgressEntryInput
+  }
+
+  export type ProgressEntryUncheckedCreateWithoutImagesInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    calendarEvent?: CalendarEventUncheckedCreateNestedOneWithoutProgressEntryInput
+  }
+
+  export type ProgressEntryCreateOrConnectWithoutImagesInput = {
+    where: ProgressEntryWhereUniqueInput
+    create: XOR<ProgressEntryCreateWithoutImagesInput, ProgressEntryUncheckedCreateWithoutImagesInput>
+  }
+
+  export type ProgressEntryUpsertWithoutImagesInput = {
+    update: XOR<ProgressEntryUpdateWithoutImagesInput, ProgressEntryUncheckedUpdateWithoutImagesInput>
+    create: XOR<ProgressEntryCreateWithoutImagesInput, ProgressEntryUncheckedCreateWithoutImagesInput>
+    where?: ProgressEntryWhereInput
+  }
+
+  export type ProgressEntryUpdateToOneWithWhereWithoutImagesInput = {
+    where?: ProgressEntryWhereInput
+    data: XOR<ProgressEntryUpdateWithoutImagesInput, ProgressEntryUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type ProgressEntryUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProgressEntriesNestedInput
+    calendarEvent?: CalendarEventUpdateOneWithoutProgressEntryNestedInput
+  }
+
+  export type ProgressEntryUncheckedUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    calendarEvent?: CalendarEventUncheckedUpdateOneWithoutProgressEntryNestedInput
+  }
+
+  export type UserCreateWithoutUserStatsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collections?: CollectionCreateNestedManyWithoutUserInput
+    progressEntries?: ProgressEntryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutUserStatsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collections?: CollectionUncheckedCreateNestedManyWithoutUserInput
+    progressEntries?: ProgressEntryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutUserStatsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserStatsInput, UserUncheckedCreateWithoutUserStatsInput>
+  }
+
+  export type UserUpsertWithoutUserStatsInput = {
+    update: XOR<UserUpdateWithoutUserStatsInput, UserUncheckedUpdateWithoutUserStatsInput>
+    create: XOR<UserCreateWithoutUserStatsInput, UserUncheckedCreateWithoutUserStatsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserStatsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserStatsInput, UserUncheckedUpdateWithoutUserStatsInput>
+  }
+
+  export type UserUpdateWithoutUserStatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collections?: CollectionUpdateManyWithoutUserNestedInput
+    progressEntries?: ProgressEntryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUserStatsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collections?: CollectionUncheckedUpdateManyWithoutUserNestedInput
+    progressEntries?: ProgressEntryUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProgressEntryCreateWithoutCalendarEventInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProgressEntriesInput
+    images?: ProgressImageCreateNestedManyWithoutProgressEntryInput
+  }
+
+  export type ProgressEntryUncheckedCreateWithoutCalendarEventInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    images?: ProgressImageUncheckedCreateNestedManyWithoutProgressEntryInput
+  }
+
+  export type ProgressEntryCreateOrConnectWithoutCalendarEventInput = {
+    where: ProgressEntryWhereUniqueInput
+    create: XOR<ProgressEntryCreateWithoutCalendarEventInput, ProgressEntryUncheckedCreateWithoutCalendarEventInput>
+  }
+
+  export type ProgressEntryUpsertWithoutCalendarEventInput = {
+    update: XOR<ProgressEntryUpdateWithoutCalendarEventInput, ProgressEntryUncheckedUpdateWithoutCalendarEventInput>
+    create: XOR<ProgressEntryCreateWithoutCalendarEventInput, ProgressEntryUncheckedCreateWithoutCalendarEventInput>
+    where?: ProgressEntryWhereInput
+  }
+
+  export type ProgressEntryUpdateToOneWithWhereWithoutCalendarEventInput = {
+    where?: ProgressEntryWhereInput
+    data: XOR<ProgressEntryUpdateWithoutCalendarEventInput, ProgressEntryUncheckedUpdateWithoutCalendarEventInput>
+  }
+
+  export type ProgressEntryUpdateWithoutCalendarEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProgressEntriesNestedInput
+    images?: ProgressImageUpdateManyWithoutProgressEntryNestedInput
+  }
+
+  export type ProgressEntryUncheckedUpdateWithoutCalendarEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    images?: ProgressImageUncheckedUpdateManyWithoutProgressEntryNestedInput
+  }
+
   export type CollectionCreateManyUserInput = {
     id?: string
     title: string
     description?: string | null
     coverImage?: string | null
     isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProgressEntryCreateManyUserInput = {
+    id?: string
+    date: Date | string
+    title: string
+    description?: string | null
+    postedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5352,6 +11319,40 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressEntryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: ProgressImageUpdateManyWithoutProgressEntryNestedInput
+    calendarEvent?: CalendarEventUpdateOneWithoutProgressEntryNestedInput
+  }
+
+  export type ProgressEntryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: ProgressImageUncheckedUpdateManyWithoutProgressEntryNestedInput
+    calendarEvent?: CalendarEventUncheckedUpdateOneWithoutProgressEntryNestedInput
+  }
+
+  export type ProgressEntryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    postedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5390,6 +11391,30 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressImageCreateManyProgressEntryInput = {
+    id?: string
+    url: string
+    createdAt?: Date | string
+  }
+
+  export type ProgressImageUpdateWithoutProgressEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressImageUncheckedUpdateWithoutProgressEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressImageUncheckedUpdateManyWithoutProgressEntryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

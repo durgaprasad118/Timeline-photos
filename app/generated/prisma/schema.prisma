@@ -15,14 +15,17 @@ datasource db {
 }
 
 model User {
-  id          String       @id @default(cuid())
-  name        String?
-  email       String       @unique
-  password    String?
-  image       String?
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  collections Collection[]
+  id              String          @id @default(cuid())
+  name            String?
+  email           String          @unique
+  password        String?
+  image           String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  collections     Collection[]
+  // Progress tracking relations
+  progressEntries ProgressEntry[]
+  userStats       UserStats?
 }
 
 model Collection {
@@ -47,4 +50,51 @@ model Memory {
   updatedAt    DateTime   @updatedAt
   collectionId String
   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+}
+
+// Progress tracking models
+model ProgressEntry {
+  id            String          @id @default(cuid())
+  date          DateTime
+  title         String
+  description   String?         @db.Text
+  postedAt      DateTime
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  userId        String
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  images        ProgressImage[]
+  calendarEvent CalendarEvent?
+}
+
+model ProgressImage {
+  id              String        @id @default(cuid())
+  url             String
+  progressEntryId String
+  progressEntry   ProgressEntry @relation(fields: [progressEntryId], references: [id], onDelete: Cascade)
+  createdAt       DateTime      @default(now())
+}
+
+model UserStats {
+  id             String    @id @default(cuid())
+  userId         String    @unique
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalDays      Int       @default(0)
+  currentStreak  Int       @default(0)
+  longestStreak  Int       @default(0)
+  lastPostedDate DateTime?
+  updatedAt      DateTime  @updatedAt
+}
+
+// Calendar integration
+model CalendarEvent {
+  id              String        @id @default(cuid())
+  title           String
+  date            DateTime
+  imageUrl        String?
+  category        String?
+  progressEntryId String        @unique
+  progressEntry   ProgressEntry @relation(fields: [progressEntryId], references: [id], onDelete: Cascade)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }

@@ -151,6 +151,45 @@ exports.Prisma.MemoryScalarFieldEnum = {
   collectionId: 'collectionId'
 };
 
+exports.Prisma.ProgressEntryScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  title: 'title',
+  description: 'description',
+  postedAt: 'postedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.ProgressImageScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  progressEntryId: 'progressEntryId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UserStatsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  totalDays: 'totalDays',
+  currentStreak: 'currentStreak',
+  longestStreak: 'longestStreak',
+  lastPostedDate: 'lastPostedDate',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CalendarEventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  date: 'date',
+  imageUrl: 'imageUrl',
+  category: 'category',
+  progressEntryId: 'progressEntryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -184,11 +223,41 @@ exports.Prisma.MemoryOrderByRelevanceFieldEnum = {
   collectionId: 'collectionId'
 };
 
+exports.Prisma.ProgressEntryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  userId: 'userId'
+};
+
+exports.Prisma.ProgressImageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  url: 'url',
+  progressEntryId: 'progressEntryId'
+};
+
+exports.Prisma.UserStatsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
+exports.Prisma.CalendarEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  imageUrl: 'imageUrl',
+  category: 'category',
+  progressEntryId: 'progressEntryId'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Collection: 'Collection',
-  Memory: 'Memory'
+  Memory: 'Memory',
+  ProgressEntry: 'ProgressEntry',
+  ProgressImage: 'ProgressImage',
+  UserStats: 'UserStats',
+  CalendarEvent: 'CalendarEvent'
 };
 
 /**
