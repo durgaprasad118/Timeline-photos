@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -11,13 +11,11 @@ import {
   isToday, 
   isSameMonth,
   getDaysInMonth,
-  addDays
 } from 'date-fns';
-import { mockEntries } from '../../mock-data';
 import { ProgressEntry } from '@/lib/types';
 import ProgressEntryModal from '../../components/ProgressEntryModal';
 import ProgressTimeline from '../../components/ProgressTimeline';
-import { syncProgressWithCalendar } from '@/lib/progress-calendar-service';
+import { getProgressEntriesForMonth, createProgressEntry, updateProgressEntry } from '@/lib/progress-service';
 
 export default function MonthPage() {
   const router = useRouter();
@@ -27,155 +25,178 @@ export default function MonthPage() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedEntry, setSelectedEntry] = useState<ProgressEntry | undefined>(undefined);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Client-side only effects
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Parse the year and month from the route params
   const year = parseInt(params.year as string, 10);
   const month = parseInt(params.month as string, 10) - 1; // Adjust month to be 0-based
   
-  const monthDate = new Date(year, month, 1);
-  const totalDays = getDaysInMonth(monthDate);
-  const today = new Date();
+  const monthDate = useMemo(() => new Date(year, month, 1), [year, month]);
+  const totalDays = useMemo(() => getDaysInMonth(monthDate), [monthDate]);
   
-  // Filter entries for the current month
+  // Filter entries for the current month - only run when params change
   useEffect(() => {
+    if (!isMounted) return;
+
+    // Fetch entries from the API
     const fetchEntries = async () => {
       try {
-        // In a production environment, this would call the API
-        // const response = await fetch(`/api/progress?year=${year}&month=${month + 1}`);
-        // if (!response.ok) throw new Error('Failed to fetch entries');
-        // const data = await response.json();
-        // setEntries(data.entries);
-        
-        // For now, use mock data
-        const monthStart = startOfMonth(monthDate);
-        const monthEnd = endOfMonth(monthDate);
-        
-        const filteredEntries = mockEntries.filter(entry => {
-          const entryDate = parseISO(entry.date);
-          return entryDate >= monthStart && entryDate <= monthEnd;
-        });
-        
-        setEntries(filteredEntries);
+        console.log(`Fetching progress entries for ${year}/${month + 1}`);
+        // Month is 1-indexed in the API
+        const fetchedEntries = await getProgressEntriesForMonth(year, month + 1);
+        setEntries(fetchedEntries);
       } catch (error) {
         console.error('Error fetching entries:', error);
       }
     };
     
     fetchEntries();
-  }, [monthDate, year, month]);
+  }, [year, month, isMounted]);
   
   // Handle adding a new entry
-  const handleAddEntry = async (entryData: Omit<ProgressEntry, 'id' | 'userId' | 'createdAt' | 'updatedAt'>) => {
+  const handleAddEntry = useCallback(async (entryData: Omit<ProgressEntry, 'id' | 'userId' | 'createdAt' | 'updatedAt'>) => {
     try {
-      // In a production environment, this would call the API
-      // const response = await fetch('/api/progress', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(entryData),
-      // });
-      // 
-      // if (!response.ok) throw new Error('Failed to create entry');
-      // const data = await response.json();
-      // const newEntry = data.entry;
+      // Save to API
+      const newEntry = await createProgressEntry(entryData);
       
-      // For now, create a mock entry
-      const newEntry: ProgressEntry = {
-        id: `entry-${Date.now()}`,
-        userId: 'user123',
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        ...entryData
-      };
-      
-      setEntries(prev => [...prev, newEntry]);
-      
-      // Log the new entry
-      console.log('New entry:', newEntry);
-      
-      // Sync with calendar if it has images
-      if (newEntry.images && newEntry.images.length > 0) {
-        await syncProgressWithCalendar(newEntry);
+      if (newEntry) {
+        // Add to local state
+        setEntries(prev => [...prev, newEntry]);
+        console.log('New entry added and saved to backend:', newEntry);
       }
     } catch (error) {
       console.error('Error adding entry:', error);
     }
-  };
+  }, []);
   
   // Handle editing an existing entry
-  const handleEditEntry = (entry: ProgressEntry) => {
+  const handleEditEntry = useCallback((entry: ProgressEntry) => {
     setSelectedEntry(entry);
     setSelectedDate(parseISO(entry.date));
     setShowModal(true);
-  };
+  }, []);
   
   // Handle updating an entry
-  const handleUpdateEntry = async (entryData: Omit<ProgressEntry, 'id' | 'userId' | 'createdAt' | 'updatedAt'>) => {
+  const handleUpdateEntry = useCallback(async (entryData: Omit<ProgressEntry, 'id' | 'userId' | 'createdAt' | 'updatedAt'>) => {
     if (!selectedEntry) return;
     
     try {
-      // In a production environment, this would call the API
-      // const response = await fetch(`/api/progress/${selectedEntry.id}`, {
-      //   method: 'PATCH',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(entryData),
-      // });
-      // 
-      // if (!response.ok) throw new Error('Failed to update entry');
-      // const data = await response.json();
-      // const updatedEntry = data.entry;
-      
-      // For now, update the entry locally
-      const updatedEntry: ProgressEntry = {
-        ...selectedEntry,
-        ...entryData,
-        updatedAt: new Date().toISOString()
+      // Prepare update data
+      const updateData = {
+        id: selectedEntry.id,
+        ...entryData
       };
       
-      setEntries(prev => prev.map(entry => 
-        entry.id === selectedEntry.id ? updatedEntry : entry
-      ));
+      // Save to API
+      const updatedEntry = await updateProgressEntry(updateData);
       
-      setSelectedEntry(undefined);
-      
-      // Log the updated entry
-      console.log('Updated entry:', updatedEntry);
-      
-      // Sync with calendar if it has images
-      if (updatedEntry.images && updatedEntry.images.length > 0) {
-        await syncProgressWithCalendar(updatedEntry);
+      if (updatedEntry) {
+        // Update local state
+        setEntries(prev => prev.map(entry => 
+          entry.id === selectedEntry.id ? updatedEntry : entry
+        ));
+        
+        setSelectedEntry(undefined);
+        console.log('Entry updated and saved to backend:', updatedEntry);
       }
     } catch (error) {
       console.error('Error updating entry:', error);
     }
-  };
+  }, [selectedEntry]);
   
-  // Can only add or edit entries for the current day
-  const canAddEntryToday = isToday(selectedDate) && isSameMonth(selectedDate, monthDate);
-  
-  // Create daily progress indicators
-  const daysWithEntries = entries.reduce<Record<string, boolean>>((acc, entry) => {
-    const dayStr = entry.date.split('T')[0];
-    acc[dayStr] = true;
-    return acc;
-  }, {});
+  // Create daily progress indicators - memoized to prevent recalculations
+  const daysWithEntries = useMemo(() => {
+    return entries.reduce<Record<string, boolean>>((acc, entry) => {
+      const dayStr = entry.date.split('T')[0];
+      acc[dayStr] = true;
+      return acc;
+    }, {});
+  }, [entries]);
 
-  const handleAddTodayClick = () => {
+  const handleAddTodayClick = useCallback(() => {
     if (isButtonDisabled) return;
     
+    console.log('Add Today button clicked');
     setIsButtonDisabled(true);
-    setSelectedDate(new Date());
-    setSelectedEntry(undefined);
-    setShowModal(true);
     
-    // Re-enable the button after a short delay
-    setTimeout(() => {
+    // Use requestAnimationFrame to ensure we're in a client-side rendering context
+    requestAnimationFrame(() => {
+      // Create a stable date object with time set to midnight
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      // Update state with the stable date
+      setSelectedDate(today);
+      setSelectedEntry(undefined);
+      setShowModal(true);
+      
+      console.log('Modal state set to:', true, 'with date:', today.toISOString());
+      
+      // Re-enable the button after opening the modal
       setIsButtonDisabled(false);
-    }, 500);
-  };
+    });
+  }, [isButtonDisabled]);
+
+  const handleCloseModal = useCallback(() => {
+    console.log('Closing modal');
+    setShowModal(false);
+    setSelectedEntry(undefined);
+  }, []);
+
+  // Add debug useEffect
+  useEffect(() => {
+    if (!isMounted) return;
+    
+    // Add error event listener to catch any unhandled errors
+    const handleError = (event: ErrorEvent) => {
+      console.error('Unhandled error caught:', event.error);
+    };
+    
+    window.addEventListener('error', handleError);
+    
+    console.log('Debug info:', { 
+      params,
+      year, 
+      month, 
+      showModal, 
+      selectedDate: selectedDate?.toISOString(),
+      selectedEntryId: selectedEntry?.id
+    });
+    
+    return () => {
+      window.removeEventListener('error', handleError);
+    };
+  }, [params, year, month, showModal, selectedDate, selectedEntry, isMounted]);
+
+  // Handle the case where we're editing an entry from a direct link
+  useEffect(() => {
+    if (!isMounted) return;
+    
+    // Check if we have an edit parameter in the URL
+    const params = new URLSearchParams(window.location.search);
+    const editId = params.get('edit');
+    
+    if (editId) {
+      // Find the entry with this ID
+      const entryToEdit = entries.find(entry => entry.id === editId);
+      if (entryToEdit) {
+        // Set it as the selected entry and open the modal
+        setSelectedEntry(entryToEdit);
+        setSelectedDate(parseISO(entryToEdit.date));
+        setShowModal(true);
+      }
+    }
+  }, [entries, isMounted]);
+
+  // Server-side or early client render - show nothing while hydrating
+  if (!isMounted) {
+    return <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 py-8 px-4 sm:px-6 lg:px-8"></div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 py-8 px-4 sm:px-6 lg:px-8">
@@ -208,13 +229,15 @@ export default function MonthPage() {
             </h1>
           </div>
           
-          <button
-            onClick={handleAddTodayClick}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
-            disabled={!isToday(new Date()) || isButtonDisabled}
-          >
-            Add Today's Progress
-          </button>
+          <div className="flex space-x-3">
+            <button
+              onClick={handleAddTodayClick}
+              className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
+              disabled={!isToday(new Date()) || isButtonDisabled}
+            >
+              Add Today's Progress
+            </button>
+          </div>
         </div>
         
         {/* Monthly calendar overview */}
@@ -289,18 +312,17 @@ export default function MonthPage() {
         </div>
       </div>
       
-      {/* Entry modal */}
-      <ProgressEntryModal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-          setSelectedEntry(undefined);
-        }}
-        date={selectedDate}
-        onSave={selectedEntry ? handleUpdateEntry : handleAddEntry}
-        initialData={selectedEntry}
-        isEditing={!!selectedEntry}
-      />
+      {/* Entry modal - only rendered client-side after mounting */}
+      {isMounted && (
+        <ProgressEntryModal
+          isOpen={showModal}
+          onClose={handleCloseModal}
+          date={selectedDate}
+          onSave={selectedEntry ? handleUpdateEntry : handleAddEntry}
+          initialData={selectedEntry}
+          isEditing={!!selectedEntry}
+        />
+      )}
     </div>
   );
 } 

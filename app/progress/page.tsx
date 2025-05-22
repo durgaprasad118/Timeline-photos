@@ -9,42 +9,47 @@ import { MonthCard } from '@/lib/types';
 export default function ProgressPage() {
   const [monthCards, setMonthCards] = useState<MonthCard[]>([]);
   
+  // Generate month cards only once on component mount
   useEffect(() => {
     // Generate month cards from current month (May 2023) to Dec 2025
-    const cards: MonthCard[] = [];
-    const startDate = new Date(2023, 4, 1); // May 2023
-    const endDate = new Date(2025, 11, 31); // Dec 2025
+    const generateMonthCards = () => {
+      const cards: MonthCard[] = [];
+      const startDate = new Date(2025, 4, 1); // May 2023
+      const endDate = new Date(2025, 11, 31); // Dec 2025
+      
+      let currentDate = startOfMonth(startDate);
+      
+      while (currentDate <= endDate) {
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+        const daysInMonth = getDaysInMonth(currentDate);
+        
+        // Count entries for this month from mock data
+        const monthStart = startOfMonth(currentDate).toISOString();
+        const monthEnd = endOfMonth(currentDate).toISOString();
+        
+        const entriesInMonth = mockEntries.filter(entry => {
+          const entryDate = parseISO(entry.date);
+          return entryDate >= parseISO(monthStart) && entryDate <= parseISO(monthEnd);
+        });
+        
+        cards.push({
+          month,
+          year,
+          entriesCount: entriesInMonth.length,
+          daysInMonth,
+          progressPercentage: (entriesInMonth.length / daysInMonth) * 100
+        });
+        
+        // Move to next month
+        currentDate = new Date(year, month + 1, 1);
+      }
+      
+      return cards;
+    };
     
-    let currentDate = startOfMonth(startDate);
-    
-    while (currentDate <= endDate) {
-      const month = currentDate.getMonth();
-      const year = currentDate.getFullYear();
-      const daysInMonth = getDaysInMonth(currentDate);
-      
-      // Count entries for this month from mock data
-      const monthStart = startOfMonth(currentDate).toISOString();
-      const monthEnd = endOfMonth(currentDate).toISOString();
-      
-      const entriesInMonth = mockEntries.filter(entry => {
-        const entryDate = parseISO(entry.date);
-        return entryDate >= parseISO(monthStart) && entryDate <= parseISO(monthEnd);
-      });
-      
-      cards.push({
-        month,
-        year,
-        entriesCount: entriesInMonth.length,
-        daysInMonth,
-        progressPercentage: (entriesInMonth.length / daysInMonth) * 100
-      });
-      
-      // Move to next month
-      currentDate = new Date(year, month + 1, 1);
-    }
-    
-    setMonthCards(cards);
-  }, []);
+    setMonthCards(generateMonthCards());
+  }, []); // Empty dependency array ensures this runs only once
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 py-8 px-4 sm:px-6 lg:px-8">
@@ -55,6 +60,12 @@ export default function ProgressPage() {
           </h1>
           
           <div className="flex items-center space-x-4">
+            <Link
+              href="/progress/dashboard"
+              className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none"
+            >
+              View Dashboard
+            </Link>
             <div className="text-right">
               <p className="text-sm text-gray-500 dark:text-gray-400">Current Streak</p>
               <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">

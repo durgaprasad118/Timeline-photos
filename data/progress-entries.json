@@ -1,0 +1,15 @@
+[
+  {
+    "id": "671b0d34-f0f8-4278-9cc4-723ce31fd7e4",
+    "userId": "user123",
+    "title": "Today's progres",
+    "description": "",
+    "date": "2025-05-22",
+    "images": [
+      "/uploads/ee943328-417a-4f6f-9b97-9785fd57dd28.jpg"
+    ],
+    "postedAt": "2025-05-22T06:13:31.000Z",
+    "createdAt": "2025-05-22T06:13:31.525Z",
+    "updatedAt": "2025-05-22T06:16:42.970Z"
+  }
+]

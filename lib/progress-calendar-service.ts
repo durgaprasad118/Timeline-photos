@@ -27,6 +27,9 @@ export async function syncProgressWithCalendar(entry: ProgressEntry): Promise<vo
     // In a real application, this would be handled automatically by the backend
     // when creating/updating progress entries through the API
     console.log('Syncing progress entry to calendar:', entry.id);
+    
+    // Just return a resolved promise without making any network requests
+    // since this is just mock data
     return Promise.resolve();
   } catch (error) {
     console.error('Error syncing with calendar:', error);
@@ -37,6 +40,12 @@ export async function syncProgressWithCalendar(entry: ProgressEntry): Promise<vo
 // Function to get all calendar events for a specific month
 export async function getCalendarEventsForMonth(year: number, month: number): Promise<CalendarEvent[]> {
   try {
+    // For development/testing, return an empty array to avoid unnecessary network requests
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Development mode: Skipping calendar API call');
+      return [];
+    }
+    
     // Make API call to get calendar events
     const response = await fetch(`/api/calendar/events?year=${year}&month=${month + 1}`);
     

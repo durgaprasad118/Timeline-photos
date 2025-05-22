@@ -44,7 +44,8 @@ const eventCategories = {
   leisure: { name: 'Leisure & Trips', color: '#009688' },
   work: { name: 'Work Tasks', color: '#FF9800' },
   medical: { name: 'Medical Appointments', color: '#F44336' },
-  other: { name: 'Other Events', color: '#3174ad' }
+  other: { name: 'Other Events', color: '#3174ad' },
+  progress: { name: 'Code Progress', color: '#4CAF50' }  // Green color for progress entries
 };
 
 // Convert JSON data to CalendarEvent format
@@ -61,9 +62,14 @@ const convertToCalendarEvents = (data: EventData[]): CalendarEvent[] => {
   });
 };
 
+interface ExtendedCalendarEvent extends CalendarEvent {
+  isProgress?: boolean;
+  description?: string;
+}
+
 export default function CalendarPage() {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
-  const [currentDate, setCurrentDate] = useState(new Date(2023, 2, 15)); // March 15, 2023
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 4, 1)); // March 15, 2023
   const [showModal, setShowModal] = useState(false);
   const [newEvent, setNewEvent] = useState({
     title: '',
@@ -73,11 +79,42 @@ export default function CalendarPage() {
   });
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  // Load events from JSON data
+  // Load events from JSON data and progress entries from API
   useEffect(() => {
-    const calendarEvents = convertToCalendarEvents(marchEventsData as EventData[]);
-    setEvents(calendarEvents);
-  }, []);
+    async function loadEvents() {
+      try {
+        // Load pre-defined events from JSON
+        const calendarEvents = convertToCalendarEvents(marchEventsData as EventData[]);
+        
+        // Load progress entries from API
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth() + 1; // API expects 1-12 format
+        
+        const progressResponse = await fetch(`/api/calendar/progress?year=${year}&month=${month}`);
+        
+        if (progressResponse.ok) {
+          const progressData = await progressResponse.json();
+          const progressEvents = progressData.events.map((event: any) => ({
+            ...event,
+            start: new Date(event.start),
+            end: new Date(event.end)
+          }));
+          
+          // Combine regular events with progress entries
+          setEvents([...calendarEvents, ...progressEvents]);
+        } else {
+          setEvents(calendarEvents);
+        }
+      } catch (error) {
+        console.error('Error loading events:', error);
+        // Load just the JSON events as fallback
+        const calendarEvents = convertToCalendarEvents(marchEventsData as EventData[]);
+        setEvents(calendarEvents);
+      }
+    }
+    
+    loadEvents();
+  }, [currentDate]);
 
   // Handle slot selection (clicking on a day)
   const handleSelectSlot = ({ start }: { start: Date }) => {
@@ -121,6 +158,25 @@ export default function CalendarPage() {
     // Determine color based on event title or category
     let backgroundColor = eventCategories.other.color;
     
+    // Check if it's a progress entry
+    if ('isProgress' in event && event.isProgress) {
+      backgroundColor = eventCategories.progress.color;
+      return {
+        style: {
+          backgroundColor,
+          color: 'white',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+          padding: '2px 6px',
+          borderRadius: '4px',
+          fontWeight: 700,  // Make progress entries bold
+          boxShadow: '0 2px 4px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.3)',
+          border: '1px solid rgba(255,255,255,0.3)',
+        },
+      };
+    }
+    
     // For existing events, determine by title
     if (event.title.includes('Meeting') || event.title.includes('Call')) {
       backgroundColor = eventCategories.meeting.color;
@@ -155,24 +211,59 @@ export default function CalendarPage() {
     };
   };
 
-  const Event = ({ event }: { event: CalendarEvent }) => (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <img
-        src={event.imageUrl}
-        alt={event.title}
-        style={{ 
-          width: 24, 
-          height: 24, 
-          marginRight: 6, 
-          borderRadius: '50%', 
-          objectFit: 'cover',
-          border: '1px solid rgba(255,255,255,0.5)',
-          boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
-        }}
-      />
-      <span>{event.title}</span>
-    </div>
-  );
+  const Event = ({ event }: { event: ExtendedCalendarEvent }) => {
+    // Custom styling for progress entries
+    if (event.isProgress) {
+      return (
+        <div 
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            position: 'relative'
+          }}
+          className="progress-event"
+          title={event.description ? `${event.title} - ${event.description}` : event.title}
+        >
+          <img
+            src={event.imageUrl}
+            alt={event.title}
+            style={{ 
+              width: 24, 
+              height: 24, 
+              marginRight: 6, 
+              borderRadius: '50%', 
+              objectFit: 'cover',
+              border: '2px solid rgba(255,255,255,0.7)',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
+            }}
+          />
+          <span style={{ fontWeight: 'bold' }}>
+            {event.title.length > 20 ? `${event.title.substring(0, 20)}...` : event.title}
+          </span>
+        </div>
+      );
+    }
+    
+    // Regular events
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <img
+          src={event.imageUrl}
+          alt={event.title}
+          style={{ 
+            width: 24, 
+            height: 24, 
+            marginRight: 6, 
+            borderRadius: '50%', 
+            objectFit: 'cover',
+            border: '1px solid rgba(255,255,255,0.5)',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
+          }}
+        />
+        <span>{event.title}</span>
+      </div>
+    );
+  };
 
   // Image URLs for each category
   const categoryImages = {
@@ -193,10 +284,29 @@ export default function CalendarPage() {
     });
   };
 
+  // Handle event selection (clicking on an event)
+  const handleSelectEvent = (event: ExtendedCalendarEvent) => {
+    // If it's a progress entry, navigate to edit page
+    if (event.isProgress) {
+      // Extract date from the event
+      const eventDate = new Date(event.start);
+      const year = eventDate.getFullYear();
+      const month = eventDate.getMonth() + 1; // 1-12 format
+      
+      // Navigate to edit page with the event ID
+      window.location.href = `/progress/${year}/${month}?edit=${event.id}`;
+    } else {
+      // Regular event handling could be added here
+      alert(`Selected event: ${event.title}`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 p-4">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">March 2023 Events Calendar</h1>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+          {format(currentDate, 'MMMM yyyy')} Calendar
+        </h1>
         <button 
           onClick={() => {
             setSelectedDate(currentDate);
@@ -228,6 +338,7 @@ export default function CalendarPage() {
           className="calendar-custom"
           selectable
           onSelectSlot={handleSelectSlot}
+          onSelectEvent={handleSelectEvent}
         />
       </div>
       
@@ -253,6 +364,10 @@ export default function CalendarPage() {
           <div className="flex items-center">
             <div className="w-4 h-4 rounded-full bg-[#3174ad] mr-2"></div>
             <span className="text-sm text-gray-700 dark:text-gray-300">Other Events</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-4 h-4 rounded-full bg-[#4CAF50] mr-2"></div>
+            <span className="text-sm text-gray-700 dark:text-gray-300">Code Progress</span>
           </div>
         </div>
       </div>

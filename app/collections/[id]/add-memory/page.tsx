@@ -3,13 +3,28 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { uploadImageAction } from "@/app/actions/cloudinary-actions";
 import Link from "next/link";
 
 interface AddMemoryPageProps {
   params: {
     id: string;
   };
+}
+
+async function mockUploadImage(base64Image: string): Promise<string> {
+  // Return a random mock image URL
+  const mockUrls = [
+    'https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=500&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=500&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=500&h=500&fit=crop',
+  ];
+  
+  // Simulate network delay
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  // Return a random mock image URL
+  const randomIndex = Math.floor(Math.random() * mockUrls.length);
+  return mockUrls[randomIndex];
 }
 
 export default function AddMemoryPage({ params }: AddMemoryPageProps) {
@@ -63,7 +78,7 @@ export default function AddMemoryPage({ params }: AddMemoryPageProps) {
         throw new Error("Please select a date");
       }
 
-      const imageUrl = await uploadImageAction(imagePreview);
+      const imageUrl = await mockUploadImage(imagePreview);
 
       const response = await fetch(`/api/collections/${params.id}/memories`, {
         method: "POST",

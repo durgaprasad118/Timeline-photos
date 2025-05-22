@@ -54,7 +54,7 @@ const createMockEntry = (date: Date, index: number): ProgressEntry => {
 };
 
 // Generate entries for the last 60 days (with some gaps to simulate missed days)
-export const generateMockEntries = (): ProgressEntry[] => {
+const generateMockEntries = (): ProgressEntry[] => {
   const entries: ProgressEntry[] = [];
   const today = new Date();
   
@@ -75,6 +75,9 @@ export const generateMockEntries = (): ProgressEntry[] => {
   return entries;
 };
 
+// Generate mock entries only once and reuse them
+export const mockEntries = generateMockEntries();
+
 // Mock user stats
 export const mockUserStats: UserStats = {
   userId: USER_ID,
@@ -82,7 +85,4 @@ export const mockUserStats: UserStats = {
   currentStreak: 7,
   longestStreak: 14,
   lastPostedDate: new Date().toISOString(),
-};
-
-// Mock data for all entries
-export const mockEntries = generateMockEntries(); 
+}; 

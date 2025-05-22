@@ -11,7 +11,15 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
+  },
+  // Ensure the public directory is served properly
+  experimental: {
+    serverComponentsExternalPackages: ['uuid'],
   },
   webpack: (config) => {
     // This is to fix cloudinary using fs which is not available in the browser
